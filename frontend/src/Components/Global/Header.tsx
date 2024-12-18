@@ -23,8 +23,8 @@ const Header : React.FC<HeaderProps> = ({children}) => {
                     <li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Our Gallery</li>
                     <li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Testimonials</li>
                     <li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Contact</li>
-                    <button className='bg-[#B0C4DE] rounded-3xl hover:bg-blue-600  hover:text-white text-lg h-10 w-20 font-semibold'>Login</button>
-                    <button className='bg-[#B0C4DE] rounded-3xl  hover:bg-blue-600 hover:text-white  text-lg h-10 w-20 font-semibold '>Signup</button>
+                    <button className='bg-[#B0C4DE] rounded-2xl hover:bg-blue-600  hover:text-white text-lg h-9 w-20 font-semibold'>Login</button>
+                    <button className='bg-[#B0C4DE] rounded-2xl  hover:bg-blue-600 hover:text-white  text-lg h-9 w-20 font-semibold '>Signup</button>
 
                 </ul>
                 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaArrowCircleRight, FaArrowCircleLeft } from "react-icons/fa";
 
 const Approach: React.FC = () => {
-  // Array containing slide data
+
   const arr = [
     {
       imgSrc: "./km4.jpg",
@@ -37,16 +37,13 @@ const Approach: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      {/* Title */}
+    <div className="flex flex-col items-center justify-center mt-12 mb-12 bg-gray-100">
       <div className="text-3xl lg:text-5xl font-extrabold text-center mb-6 text-[#0000FF]">
         Our Approach
       </div>
-      {/* Subtitle */}
       <div className="text-xl lg:text-2xl font-light text-center text-black mb-10">
         "Nurturing Dreams with Kamdhenu’s Holistic Approach."
       </div>
-      {/* Slider Section */}
       <div className="relative flex  rounded-lg justify-center items-center w-full max-w-4xl h-1/3">
         {arr.map((slide, index) => (
           <div
@@ -55,14 +52,12 @@ const Approach: React.FC = () => {
               index === currentSlide ? "block" : "hidden"
             } relative w-full h-64 md:h-96`}
           >
-            {/* Image */}
             <img
               src={slide.imgSrc}
               alt={slide.altText}
               className="w-full h-full object-cover"
             />
 
-            {/* Overlay */}
             {index === currentSlide && (
               <div className="absolute top-0 right-0 w-1/3 h-full bg-gray-500 bg-opacity-60 text-white p-4 flex flex-col justify-center">
                 <h2 className="text-xl md:text-2xl font-bold text-[#FFFFFF]">
@@ -76,7 +71,7 @@ const Approach: React.FC = () => {
           </div>
         ))}
 
-        {/* Navigation Buttons */}
+  
         <button
           onClick={prevSlide}
           className="absolute top-1/2 left-4 -translate-y-1/2 text-white rounded-full p-2 hover:bg-opacity-75 focus:outline-none"
