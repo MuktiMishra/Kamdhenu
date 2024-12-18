@@ -17,13 +17,12 @@ const Header : React.FC<HeaderProps> = ({children}) => {
                 </span>
 
                 <ul className='hidden xl:flex items-center gap-9 font-semibold text-base flex-nowrap'>
-                    <li className='p-2 hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Home</li>
-                    <li className='p-2 hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>About us</li>
-                    <li className='p-2 hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Programs</li>
-                    <li className='p-2 hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Our Gallery</li>
-                    <li className='p-2 hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Testimonials</li>
-                    <li className='p-2 hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Contact</li>
-
+                    <li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Home</li>
+                    <li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>About us</li>
+                    <li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Programs</li>
+                    <li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Our Gallery</li>
+                    <li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Testimonials</li>
+                    <li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Contact</li>
                     <button className='bg-[#B0C4DE] rounded-3xl hover:bg-blue-600  hover:text-white text-lg h-10 w-20 font-semibold'>Login</button>
                     <button className='bg-[#B0C4DE] rounded-3xl  hover:bg-blue-600 hover:text-white  text-lg h-10 w-20 font-semibold '>Signup</button>
 

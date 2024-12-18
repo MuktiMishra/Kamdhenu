@@ -1,4 +1,5 @@
 import Header from './Components/Global/Header'
+import LandingPage from './Pages/LandingPage'
 
 function App() {
   
@@ -6,6 +7,7 @@ function App() {
   return (
     <>
       <Header />
+      <LandingPage />
         
     </>
   )
