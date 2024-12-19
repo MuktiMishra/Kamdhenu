@@ -1,4 +1,6 @@
+import Footer from './Components/Global/Footer'
 import Header from './Components/Global/Header'
+import AboutUs from './Pages/AboutUs'
 import LandingPage from './Pages/LandingPage'
 
 function App() {
@@ -6,8 +8,14 @@ function App() {
 
   return (
     <>
+    <div className='w-full max-w-screen overflow-hidden'>
       <Header />
-      <LandingPage />
+      <AboutUs />
+      <Footer />
+
+    </div>
+      
+
         
     </>
   )

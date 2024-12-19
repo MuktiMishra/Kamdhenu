@@ -16,7 +16,7 @@ const LandingPage: React.FC<LandingPageProps> = ({children}) => {
         <Approach />
         <ServicesSection />
         <Works />
-        <Footer />
+        
       
     </div>
   )
