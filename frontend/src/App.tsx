@@ -6,6 +6,7 @@ import Signup from './Components/Authentication/Signup'
 import Login from './Components/Authentication/Login'
 import Gallery from './Pages/Gallery'
 import Programs from './Pages/Programs'
+import ContactUs from './Pages/ContactUs'
 
 function App() {
   
@@ -14,7 +15,7 @@ function App() {
     <>
     <div className='w-full max-w-screen overflow-hidden'>
       <Header />
-      <Programs />
+      <ContactUs />
       <Footer />
 
     </div>

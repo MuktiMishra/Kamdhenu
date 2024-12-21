@@ -13,6 +13,7 @@ const ProgramHero: React.FC<HeroProps> = ({ children }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % words.length);
+
     }, 2000); // Change word every 2 seconds
 
     return () => clearInterval(interval); // Cleanup interval on unmount
@@ -24,7 +25,7 @@ const ProgramHero: React.FC<HeroProps> = ({ children }) => {
         Programs
       </div>
       <div className="w-screen grid grid-cols-1 md:grid-cols-2 mt-2">
-        <div className="flex flex-col text-left gap-4 mt-24 place-items-start ml-3 md:ml-20">
+        <div className="flex flex-col text-left gap-4 mt-24 place-items-start ml-10 md:ml-12">
           <div className="text-4xl lg:text-6xl font-bold text-center lg:text-left text-black text-nowrap">
             Get the
           </div>
@@ -43,12 +44,12 @@ const ProgramHero: React.FC<HeroProps> = ({ children }) => {
           <div className="text-4xl lg:text-6xl font-bold text-center lg:text-left text-black text-nowrap">
             right now !
           </div>
-          <button className='h-10 w-32 bg-[#B0C4DE] rounded-xl mt-4 text-bold  hover:bg-blue-500 hover:text-white text-lg'>Join Us Now</button>
+          <button className='h-10 w-32 bg-[#B0C4DE] rounded-xl mt-4 text-bold  hover:bg-blue-500 hover:text-white text-lg'>Get Started</button>
         </div>
         <div className="w-full h-full hidden lg:block">
           <img
             src="./Program.jpg"
-            className="w-[100%] h-[70%] object-cover"
+            className="w-[90%] h-[70%] object-cover"
             alt="Hero"
           />
         </div>       

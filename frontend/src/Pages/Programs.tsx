@@ -1,6 +1,7 @@
 import React , {useState , useEffect}  from 'react'
 import { motion } from 'framer-motion';
 import ProgramHero from '../Components/ProgramPage/ProgramHero';
+import Details from '../Components/ProgramPage/Details';
 
 interface HeroProps {
   children?: React.ReactNode;
@@ -22,6 +23,7 @@ const Programs: React.FC<HeroProps> = ({ children }) => {
   return (
     <div>
         <ProgramHero />
+        <Details />
       
       
     </div>
