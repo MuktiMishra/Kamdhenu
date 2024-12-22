@@ -37,8 +37,8 @@ const Login : React.FC<SignupProps>= () => {
                     Login
                 </div>
                 
-                <input type="number" className="w-72 lg:w-80 h-7 rounded-md bg-slate-200" placeholder="Aadhar Number" value={formData.aadharNumber} onChange={handleChange} />
-                <input type="password" className="w-72 lg:w-80 h-7 rounded-md bg-slate-200" placeholder="Password" value={formData.password} onChange={handleChange} />
+                <input type="number" className="w-72 lg:w-80 h-7 p-3 rounded-md bg-slate-200" placeholder="Aadhar Number" value={formData.aadharNumber} onChange={handleChange} />
+                <input type="password" className="w-72 lg:w-80 h-7 p-3 rounded-md bg-slate-200" placeholder="Password" value={formData.password} onChange={handleChange} />
                
 
                 <button 

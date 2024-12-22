@@ -14,7 +14,7 @@ const Header : React.FC<HeaderProps> = ({children}) => {
             >
                 
                 
-                <ul className='hidden xl:flex items-center gap-9 font-semibold text-base flex-nowrap'>
+                <ul className='hidden lg:flex items-center gap-9 font-semibold text-base flex-nowrap'>
                 <span className='xl:text-xl text-lg font-bold text-blue-700 hover:scale-125 transition all justify-start'>
                     Kamdhenu
                 </span>
@@ -30,10 +30,10 @@ const Header : React.FC<HeaderProps> = ({children}) => {
 
                 </ul>
 
-                <span className='xl:text-xl xl:hidden sm:text-lg font-bold text-blue-700 hover:scale-125 transition all justify-start'>
+                <span className='xl:text-xl lg:hidden sm:text-lg font-bold text-blue-700 hover:scale-125 transition all justify-start'>
                     Kamdhenu
                 </span>
-                <i className='bx bx-menu xl:hidden block 
+                <i className='bx bx-menu lg:hidden block 
                 text-4xl cursor-pointer' onClick={()=>(setIsMenuOpen(!isMenuOpen))}>      
                 </i>
 
