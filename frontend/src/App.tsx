@@ -8,6 +8,7 @@ import Gallery from './Pages/Gallery'
 import Programs from './Pages/Programs'
 import ContactUs from './Pages/ContactUs'
 import Testimonials from './Pages/Testimonials'
+import { BrowserRouter as Router , Routes , Route } from 'react-router-dom'
 
 function App() {
   
@@ -15,8 +16,19 @@ function App() {
   return (
     <>
     <div className='w-full max-w-screen overflow-hidden'>
-      <Header />
-      <Testimonials />
+      <Router>
+        <Header />
+        <Routes>
+          <Route path='/' element={<LandingPage />} />
+          <Route path='/aboutus' element={<AboutUs />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/gallery' element={<Gallery />} />
+          <Route path='/programs' element={<Programs />} />
+          <Route path='/contact' element={<ContactUs />} />
+          <Route path='/testimonials' element={<Testimonials />} />
+        </Routes>
+      </Router>
       <Footer />
 
     </div>

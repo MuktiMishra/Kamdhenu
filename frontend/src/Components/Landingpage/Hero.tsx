@@ -20,7 +20,7 @@ const Hero: React.FC<HeroProps> = ({ children }) => {
 
   return (
     <div>
-      <div className="w-screen grid grid-cols-1 md:grid-cols-2 mt-10">
+      <div className="w-screen grid grid-cols-1 md:grid-cols-2 mt-20 md:mt-10 mb-40 md:mb-2">
         <div className="flex flex-col text-left gap-4 mt-24 place-items-start ml-10 md:ml-20">
           <div className="text-5xl lg:text-6xl font-extrabold text-center lg:text-left text-black text-nowrap">
             Your one stop

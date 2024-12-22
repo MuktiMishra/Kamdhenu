@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 
 
@@ -17,7 +18,7 @@ const ServicesSection : React.FC = () => {
                   the education services under Kamdhenu aim to prepare 
                   individuals for both academic excellence and practical application.
                 </div>
-                <button className='w-24 md:w-28 h-6 md:h-10 font-semibold hover:bg-blue-600 text-black hover:text-white text-xs md:text-lg rounded-xl bg-[#D9D9D9] mt-3 md:mt-5'>Learn More</button>
+                <Link to='/programs#education'><button className='w-24 md:w-28 h-6 md:h-10 font-semibold hover:bg-blue-600 text-black hover:text-white text-xs md:text-lg rounded-xl bg-[#D9D9D9] mt-3 md:mt-5'>Learn More</button></Link>
               </div>
                 <img src='./Service1.png' alt='Service 1' className='w-40 md:w-60 justify-end' />
                 
@@ -32,7 +33,7 @@ const ServicesSection : React.FC = () => {
                 industry requirements, the training programs are designed to 
                 make individuals job-ready.
                 </div>
-                <button className='w-24 md:w-28 h-6 md:h-10 font-semibold hover:bg-blue-600 text-black hover:text-white text-xs md:text-lg rounded-xl bg-[#D9D9D9] mt-3 md:mt-5'>Learn More</button>
+                <Link to='/programs#training'><button className='w-24 md:w-28 h-6 md:h-10 font-semibold hover:bg-blue-600 text-black hover:text-white text-xs md:text-lg rounded-xl bg-[#D9D9D9] mt-3 md:mt-5'>Learn More</button></Link>
               </div>
                 
             </div>
@@ -45,7 +46,7 @@ const ServicesSection : React.FC = () => {
                   the education services under Kamdhenu aim to prepare 
                   individuals for both academic excellence and practical application.
                 </div>
-                <button className='w-24 md:w-28 h-6 md:h-10 font-semibold hover:bg-blue-600 text-black hover:text-white text-xs md:text-lg rounded-xl bg-[#D9D9D9] mt-3 md:mt-5'>Learn More</button>
+                <Link to='/programs#placement'><button className='w-24 md:w-28 h-6 md:h-10 font-semibold hover:bg-blue-600 text-black hover:text-white text-xs md:text-lg rounded-xl bg-[#D9D9D9] mt-3 md:mt-5'>Learn More</button></Link>
               </div>
                 <img src='./Service3.png' alt='Service 1' className='w-40 md:w-60 justify-end' />
             </div>

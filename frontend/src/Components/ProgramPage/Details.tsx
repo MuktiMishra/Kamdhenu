@@ -3,8 +3,9 @@ import React from 'react'
 const Details = () => {
   return (
     <div>
+        
         <div className='flex flex-col text-black'>
-            
+            <a href='#education'>
             <div className='text-center justify-center text-xl md:text-3xl font-bold m-5'>
                 Distant Education
             </div>
@@ -45,9 +46,13 @@ const Details = () => {
 
 
             </div>
+            </a>
+            
 
         </div>
-
+       
+        
+        <a href='#training'>
         <div className='flex flex-col text-black'>
             
             <div className='text-center justify-center text-xl md:text-3xl font-bold m-5'>
@@ -91,7 +96,9 @@ const Details = () => {
             </div>
 
         </div>
+        </a>
 
+        <a href='#placement'> 
         <div className='flex flex-col text-black'>
             
             <div className='text-center justify-center text-xl md:text-3xl font-bold m-5'>
@@ -135,12 +142,10 @@ const Details = () => {
                 </div>
 
                 <button className='h-10 w-32 bg-[#B0C4DE] rounded-xl mt-4 md:mt-6 text-bold  hover:bg-blue-500 hover:text-white text-lg'>Apply Now</button>
-        
-
-
             </div>
 
         </div>
+        </a>
       
     </div>
   )

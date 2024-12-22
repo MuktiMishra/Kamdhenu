@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import {Link} from 'react-router-dom'
 interface HeaderProps {
     children?: React.ReactNode;
 }
@@ -12,23 +12,27 @@ const Header : React.FC<HeaderProps> = ({children}) => {
             className='flex justify-between items-center text-black py-6 px-8
             md:px-32 bg-white drop-shadow-md' 
             >
+                
+                
+                <ul className='hidden xl:flex items-center gap-9 font-semibold text-base flex-nowrap'>
                 <span className='xl:text-xl text-lg font-bold text-blue-700 hover:scale-125 transition all justify-start'>
                     Kamdhenu
                 </span>
-
-                <ul className='hidden xl:flex items-center gap-9 font-semibold text-base flex-nowrap'>
-                    <li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Home</li>
-                    <li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>About us</li>
-                    <li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Programs</li>
-                    <li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Our Gallery</li>
-                    <li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Testimonials</li>
-                    <li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Contact</li>
-                    <button className='bg-[#B0C4DE] rounded-2xl hover:bg-blue-600  hover:text-white text-lg h-9 w-20 font-semibold'>Login</button>
-                    <button className='bg-[#B0C4DE] rounded-2xl  hover:bg-blue-600 hover:text-white  text-lg h-9 w-20 font-semibold '>Signup</button>
+                   
+                    <Link to='/'><li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Home</li></Link>
+                    <Link to='/aboutus'><li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>About us</li></Link>
+                    <Link to='/programs'><li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Programs</li></Link>
+                    <Link to='/gallery'><li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Our Gallery</li></Link>
+                    <Link to='/testimonials'><li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Testimonials</li></Link>
+                    <Link to='/contact'><li className='p-2 whitespace-nowrap hover:bg-blue-600 hover:text-white rounded-md transition-all cursor-pointer '>Contact</li></Link>
+                    <Link to='/login'><button className='bg-[#B0C4DE] rounded-2xl hover:bg-blue-600  hover:text-white text-lg h-9 w-20 font-semibold'>Login</button></Link>
+                    <Link to='/signup'><button className='bg-[#B0C4DE] rounded-2xl  hover:bg-blue-600 hover:text-white  text-lg h-9 w-20 font-semibold '>Signup</button></Link>
 
                 </ul>
-                
-                
+
+                <span className='xl:text-xl xl:hidden sm:text-lg font-bold text-blue-700 hover:scale-125 transition all justify-start'>
+                    Kamdhenu
+                </span>
                 <i className='bx bx-menu xl:hidden block 
                 text-4xl cursor-pointer' onClick={()=>(setIsMenuOpen(!isMenuOpen))}>      
                 </i>
@@ -44,13 +48,18 @@ const Header : React.FC<HeaderProps> = ({children}) => {
                           Signup
                         </button>
                     </div>
+                    <Link to="/">
                     <li className='list-none w-full text-center p-4 hover:bg-blue-500 hover:text-white transition-all cursor-pointer'>
                     Home
                     </li>
+                    </Link>
                     
+                    <Link to="/aboutus">
                     <li className='list-none w-full text-center p-4 hover:bg-blue-500 hover:text-white transition-all cursor-pointer'>
                         About Us
                     </li>
+                    </Link>
+                    
 
                     <li className='list-none w-full text-center p-4 hover:bg-blue-500 hover:text-white transition-all cursor-pointer'>
                         Programs

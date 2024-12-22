@@ -6,7 +6,7 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ children }) => {
   return (
-    <div className="sticky mb-0 z-10 w-screen bg-[#0127ff] opacity-75 flex flex-col mt-2 md:mt-5">
+    <div className="sticky mb-0 z-10 w-screen bg-[#0127ff] opacity-75 flex flex-col mt-2 md:mt-10">
       <div className="flex flex-col lg:flex-row gap-7 justify-between px-5">
         {/*Heading */}
         <div className="flex flex-col justify-start text-white text-2xl md:text-4xl font-bold lg:mr-32">
@@ -20,13 +20,13 @@ const Footer: React.FC<FooterProps> = ({ children }) => {
           <div className="text-white text-lg md:text-xl font-semibold mb-3">
             Services
           </div>
-          <div className="text-white text-sm md:text-lg font-normal">
+          <div className="text-white text-sm md:text-lg font-normal hover:text-gray-400">
             Distant Education
           </div>
-          <div className="text-white text-sm md:text-lg font-normal">
+          <div className="text-white text-sm md:text-lg font-normal  hover:text-gray-400">
             Training
           </div>
-          <div className="text-white text-sm md:text-lg font-normal">
+          <div className="text-white text-sm md:text-lg font-normal  hover:text-gray-400">
             Placement
           </div>
         </div>
@@ -36,17 +36,17 @@ const Footer: React.FC<FooterProps> = ({ children }) => {
           <div className="text-white text-lg md:text-xl font-semibold mb-3">
             Kamdhenu
           </div>
-          <div className="text-white text-sm md:text-lg font-normal">About us</div>
-          <div className="text-white text-sm md:text-lg font-normal">
+          <div className="text-white text-sm md:text-lg font-normal hover:text-gray-400">About us</div>
+          <div className="text-white text-sm md:text-lg font-normal  hover:text-gray-400">
             Testimonials
           </div>
-          <div className="text-white text-sm md:text-lg font-normal">
+          <div className="text-white text-sm md:text-lg font-normal  hover:text-gray-400">
             Contact Us
           </div>
-          <div className="text-white text-sm md:text-lg font-normal">
+          <div className="text-white text-sm md:text-lg font-normal hover:text-gray-400">
             Terms of service
           </div>
-          <div className="text-white text-sm md:text-lg font-normal">
+          <div className="text-white text-sm md:text-lg font-normal hover:text-gray-400">
             Privacy policy
           </div>
         </div>
