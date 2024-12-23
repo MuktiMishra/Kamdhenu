@@ -4,7 +4,7 @@ interface FooterProps {
   children?: React.ReactNode;
 }
 
-const Footer: React.FC<FooterProps> = ({ children }) => {
+const Footer: React.FC<FooterProps> = ({ }: FooterProps) => {
   return (
     <div className="sticky mb-0 z-10 w-screen bg-[#0127ff] opacity-75 flex flex-col mt-2 md:mt-10">
       <div className="flex flex-col lg:flex-row gap-7 justify-between px-5">

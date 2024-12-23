@@ -1,5 +1,4 @@
 import React , {useState , useEffect}  from 'react'
-import { motion } from 'framer-motion';
 import ProgramHero from '../Components/ProgramPage/ProgramHero';
 import Details from '../Components/ProgramPage/Details';
 
@@ -9,8 +8,8 @@ interface HeroProps {
 
 const words = ["Distant Education","Training Support" ,"Placement Support"];
 
-const Programs: React.FC<HeroProps> = ({ children }) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
+const Programs: React.FC<HeroProps> = () => {
+    const [, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {

@@ -4,7 +4,7 @@ interface HeaderProps {
     children?: React.ReactNode;
 }
 
-const Header : React.FC<HeaderProps> = ({children}) => {
+const Header : React.FC<HeaderProps> = () => {
     const [isMenuOpen , setIsMenuOpen] = useState(false);
     return(
         <div className='sticky top-0 z-10 bg-white shadow-md'>

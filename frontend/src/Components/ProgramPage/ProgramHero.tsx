@@ -7,7 +7,7 @@ interface HeroProps {
 
 const words = ["Distant Education","Training Support" ,"Placement Support"];
 
-const ProgramHero: React.FC<HeroProps> = ({ children }) => {
+const ProgramHero: React.FC<HeroProps> = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
