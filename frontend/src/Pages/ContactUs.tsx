@@ -1,5 +1,3 @@
-import React from 'react';
-
 const ContactUs = () => {
   return (
     <div>
@@ -77,13 +75,13 @@ const ContactUs = () => {
           <form className='w-[80%]'>
             <input type="text" placeholder="Name" className="p-3 w-full rounded-md border-2 border-gray-300 focus:outline-none focus:border-blue-600" />
             <input type="text" placeholder="Email" className="p-3 w-full mt-3 rounded-md border-2 border-gray-300 focus:outline-none focus:border-blue-600" />
-            <textarea placeholder="Message" className="p-3 w-full mt-3 rounded-md border-2 border-gray-300 focus:outline-none focus:border-blue-600" rows="5"></textarea>
+            <textarea placeholder="Message" className="p-3 w-full mt-3 rounded-md border-2 border-gray-300 focus:outline-none focus:border-blue-600" rows={5} />
             <button type="submit" className="p-3 w-full mt-3 rounded-md bg-blue-600 text-white font-bold">Submit</button>
           </form>
         </div>
       </div>
     </div>
-  );
-};
+  )};
+
 
 export default ContactUs;

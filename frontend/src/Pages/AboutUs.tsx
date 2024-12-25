@@ -22,7 +22,7 @@ const teamMembers = [
   },
 ];
 
-const AboutUs: React.FC<AboutProps> = ({ children }) => {
+const AboutUs: React.FC<AboutProps> = () => {
   return (
     <div className="flex flex-col w-screen gap-20">
       {/* About component */}
