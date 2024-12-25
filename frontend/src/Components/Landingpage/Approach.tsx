@@ -37,7 +37,7 @@ const Approach: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center mt-12 mb-12 bg-gray-100">
+    <div className="flex flex-col items-center justify-center mt-12 mb-12 bg-gray-200 p-6">
       <div className="text-3xl lg:text-5xl font-extrabold text-center mb-6 text-[#0000FF]">
         Our Approach
       </div>
@@ -60,10 +60,10 @@ const Approach: React.FC = () => {
 
             {index === currentSlide && (
               <div className="absolute top-0 right-0 w-1/3 h-full bg-gray-500 bg-opacity-60 text-white p-4 flex flex-col justify-center">
-                <h2 className="text-xl md:text-2xl font-bold text-[#FFFFFF]">
+                <h2 className="text-sm md:text-2xl font-bold text-[#FFFFFF]">
                   {slide.heading}
                 </h2>
-                <p className="mt-2 text-sm md:text-base">
+                <p className="mt-2 text-xs md:text-sm">
                   {slide.description}
                 </p>
               </div>

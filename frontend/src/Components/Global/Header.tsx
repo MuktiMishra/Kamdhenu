@@ -14,7 +14,7 @@ const Header : React.FC<HeaderProps> = ({children}) => {
             >
                 
                 
-                <ul className='hidden lg:flex items-center gap-9 font-semibold text-base flex-nowrap'>
+                <ul className='hidden xl:flex items-center gap-9 font-semibold text-base flex-nowrap'>
                 <span className='xl:text-xl text-lg font-bold text-blue-700 hover:scale-125 transition all justify-start'>
                     Kamdhenu
                 </span>
@@ -30,10 +30,10 @@ const Header : React.FC<HeaderProps> = ({children}) => {
 
                 </ul>
 
-                <span className='xl:text-xl lg:hidden sm:text-lg font-bold text-blue-700 hover:scale-125 transition all justify-start'>
+                <span className='xl:text-xl xl:hidden sm:text-lg font-bold text-blue-700 hover:scale-125 transition all justify-start'>
                     Kamdhenu
                 </span>
-                <i className='bx bx-menu lg:hidden block 
+                <i className='bx bx-menu xl:hidden block 
                 text-4xl cursor-pointer' onClick={()=>(setIsMenuOpen(!isMenuOpen))}>      
                 </i>
 
@@ -60,22 +60,29 @@ const Header : React.FC<HeaderProps> = ({children}) => {
                     </li>
                     </Link>
                     
-
+                    <Link to="/programs">
                     <li className='list-none w-full text-center p-4 hover:bg-blue-500 hover:text-white transition-all cursor-pointer'>
                         Programs
                     </li>
-
+                    </Link>
+                     
+                    <Link to='/gallery'>
                     <li className='list-none w-full text-center p-4 hover:bg-blue-500 hover:text-white transition-all cursor-pointer'>
                         Our Gallery
                     </li>
-
+                    </Link>
+                    
+                    <Link to='/testimonials'>
                     <li className='list-none w-full text-center p-4 hover:bg-blue-500 hover:text-white transition-all cursor-pointer'>
                         Testimonials
                     </li>
-
+                    </Link>
+                    
+                    <Link to='/contactus'>
                     <li className='list-none w-full text-center p-4 hover:bg-blue-500 hover:text-white transition-all cursor-pointer'>
                         Contact Us
                     </li>
+                    </Link>
                 </div>
                 
             </div>

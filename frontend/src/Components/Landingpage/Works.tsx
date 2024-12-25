@@ -4,7 +4,8 @@ import React from 'react'
 
 const Works : React.FC = () => {
   return (
-    <div className='mt-3'>
+    <div className='mt-7'>
+        <div className='bg-gray-200 p-4 pb-6'>
         <div className="text-3xl lg:text-5xl font-extrabold text-center mb-7 mt-6 text-[#0000FF]">
             How Kamdhenu Works ?
         </div>
@@ -14,9 +15,10 @@ const Works : React.FC = () => {
         <div className='flex justify-center items-center'>
             <img src='./Path.png' className='w-auto h-96'/>
         </div>  
+        </div>
 
         {/* CTA Section    */}
-        <div className='flex items-center justify-center'>
+        <div className='flex items-center justify-center mt-7'>
             <div className="text-3xl lg:text-5xl font-extrabold text-center mb-7 mt-6 text-[#000000]">
                 Join
             </div>
@@ -39,10 +41,7 @@ const Works : React.FC = () => {
                 <button className='w-24 md:w-32 h-6 md:h-10 font-semibold hover:bg-blue-600 text-black hover:text-white text-xs md:text-lg rounded-xl bg-[#D9D9D9] mt-3 md:mt-5'>Join Us Now</button>
             </div>
 
-        </div>
-        
-        
-        
+        </div>    
         
     </div>
   )

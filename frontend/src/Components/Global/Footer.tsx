@@ -6,17 +6,17 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ children }) => {
   return (
-    <div className="sticky mb-0 z-10 w-screen bg-[#0127ff] opacity-75 flex flex-col mt-2 md:mt-10">
+    <div className="sticky mb-0 z-10 w-screen bg-[#0127ff] opacity-75 flex flex-col mt-12 md:mt-24">
       <div className="flex flex-col lg:flex-row gap-7 justify-between px-5">
         {/*Heading */}
-        <div className="flex flex-col justify-start text-white text-2xl md:text-4xl font-bold lg:mr-32">
+        <div className="flex flex-col justify-start text-white text-2xl md:text-4xl font-bold lg:mr-32 mt-4">
           <div>Your Success?</div>
           <div>Our Responsibility</div>
           <div className="mt-3 shadow-2xl font-light">Get in touch</div>
         </div>
 
         {/* Services */}
-        <div className="flex flex-col lg:mr-20">
+        <div className="flex flex-col lg:mr-20 mt-4">
           <div className="text-white text-lg md:text-xl font-semibold mb-3">
             Services
           </div>
@@ -32,7 +32,7 @@ const Footer: React.FC<FooterProps> = ({ children }) => {
         </div>
 
         {/*Kamdhenu */}
-        <div className="flex flex-col lg:mr-20">
+        <div className="flex flex-col lg:mr-20 mt-4">
           <div className="text-white text-lg md:text-xl font-semibold mb-3">
             Kamdhenu
           </div>
@@ -52,7 +52,7 @@ const Footer: React.FC<FooterProps> = ({ children }) => {
         </div>
 
         {/* Follow us */}
-        <div className="flex flex-col lg:mr-20">
+        <div className="flex flex-col lg:mr-20 mt-4">
           <div className="text-white text-lg md:text-xl font-semibold mb-3">
             Follow us
           </div>

@@ -20,8 +20,10 @@ const Hero: React.FC<HeroProps> = ({ children }) => {
 
   return (
     <div>
-      <div className="w-screen grid grid-cols-1 md:grid-cols-2 mt-20 md:mt-10 mb-40 md:mb-2">
+      <div className="w-screen grid grid-rows-2 md:grid-cols-2 mt-4 md:mt-10 mb-4 md:mb-2">
+        
         <div className="flex flex-col text-left gap-4 mt-24 place-items-start ml-10 md:ml-20">
+           
           <div className="text-5xl lg:text-6xl font-extrabold text-center lg:text-left text-black text-nowrap">
             Your one stop
           </div>
@@ -39,6 +41,13 @@ const Hero: React.FC<HeroProps> = ({ children }) => {
             {words[currentIndex]}
           </motion.div>
           <button className='h-10 w-32 bg-[#B0C4DE] rounded-xl mt-4 text-bold  hover:bg-blue-500 hover:text-white text-lg'>Join Us Now</button>
+        </div>
+        <div className="w-full h-full md:hidden">
+            <img
+              src="./Heropageimg.jpg"
+              className="w-[100%] h-[70%] object-cover"
+              alt="Hero"
+            />
         </div>
         <div className="w-full h-full hidden lg:block">
           <img
