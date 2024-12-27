@@ -9,6 +9,8 @@ import Programs from './Pages/Programs'
 import ContactUs from './Pages/ContactUs'
 import Testimonials from './Pages/Testimonials'
 import { BrowserRouter as Router , Routes , Route } from 'react-router-dom'
+import AdminLogin from './Pages/admin/AdminLogin'
+import Sidebar from './Components/admin/Sidebar'
 
 function App() {
   
@@ -27,9 +29,17 @@ function App() {
           <Route path='/programs' element={<Programs />} />
           <Route path='/contact' element={<ContactUs />} />
           <Route path='/testimonials' element={<Testimonials />} />
+          <Route path='/admin/login' element={<AdminLogin />} />
+          <Route path='/admin/dashboard' element={<Sidebar />} />
         </Routes>
       </Router>
       <Footer />
+      
+      
+
+      
+
+      
 
     </div>
       
