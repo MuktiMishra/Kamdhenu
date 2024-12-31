@@ -11,6 +11,9 @@ import Testimonials from './Pages/Testimonials'
 import { BrowserRouter as Router , Routes , Route } from 'react-router-dom'
 import AdminLogin from './Pages/admin/AdminLogin'
 import Sidebar from './Components/admin/Sidebar'
+import DataTable from './Pages/admin/DataTable'
+import EducationForm from './Components/Application/EducationForm'
+import SupportForm from './Components/Application/SupportForm'
 
 function App() {
   
@@ -18,7 +21,7 @@ function App() {
   return (
     <>
     <div className='w-full max-w-screen overflow-hidden'>
-      <Router>
+      {/* <Router>
         <Header />
         <Routes>
           <Route path='/' element={<LandingPage />} />
@@ -33,7 +36,11 @@ function App() {
           <Route path='/admin/dashboard' element={<Sidebar />} />
         </Routes>
       </Router>
-      <Footer />
+      <Footer /> */}
+
+      <SupportForm />
+
+      
       
       
 

@@ -1,8 +1,8 @@
 const Details = () => {
   return (
-    <div>
+    <div className="p-2 md:p-5">
         
-        <div className='flex flex-col text-black'>
+        <div className='flex flex-col text-black p-4 md:p-10 mb-10 md:mb-20 ml-5 mr-5 bg-slate-100'>
             <a href='#education'>
             <div className='text-center justify-center text-xl md:text-3xl font-bold m-5'>
                 Distant Education
@@ -37,9 +37,10 @@ const Details = () => {
                 <div className='font-semibold'>
                     <span className='text-[#0000ff]'>Interested in our services ?</span> Fill out the form to get started!<br />
                     Click the apply now button below to begin your journey toward a brighter future !
-                </div>
+                </div> 
+                <hr />
 
-                <button className='h-10 w-32 bg-[#B0C4DE] rounded-xl mt-4 md:mt-6 text-bold  hover:bg-blue-500 hover:text-white text-lg'>Apply Now</button>
+                <button className='h-10 w-32 bg-blue-400 rounded-xl mt-4 md:mt-6 text-bold  hover:bg-blue-300 hover:text-white text-lg'>Apply Now</button>
         
 
 
@@ -51,7 +52,7 @@ const Details = () => {
        
         
         <a href='#training'>
-        <div className='flex flex-col text-black'>
+        <div className='flex flex-col text-black p-4 md:p-10 mb-10 md:mb-20 ml-5 mr-5  bg-slate-100'>
             
             <div className='text-center justify-center text-xl md:text-3xl font-bold m-5'>
                 Training Support
@@ -97,7 +98,7 @@ const Details = () => {
         </a>
 
         <a href='#placement'> 
-        <div className='flex flex-col text-black'>
+        <div className='flex flex-col text-black p-4 md:p-10 mb-10 md:mb-20 ml-5 mr-5 bg-slate-100'>
             
             <div className='text-center justify-center text-xl md:text-3xl font-bold m-5'>
                 Placement Support
