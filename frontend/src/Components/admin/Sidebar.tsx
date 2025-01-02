@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { FaBars, FaTimes, FaGraduationCap, FaChalkboardTeacher, FaBriefcase } from "react-icons/fa";
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  onItemClick: (id: number) => void; 
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ onItemClick }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -26,24 +30,27 @@ const Sidebar: React.FC = () => {
           </button>
         </div>
         <ul className="flex flex-col gap-4 mt-5 px-4">
-          <li className="flex items-center gap-3 hover:bg-blue-700 rounded-md p-2 cursor-pointer">
+          <li className="flex items-center gap-3 hover:bg-blue-700 rounded-md p-2 cursor-pointer"
+          onClick={() => onItemClick(1)}> 
             <FaGraduationCap size={20} />
             <span>Education</span>
           </li>
-          <li className="flex items-center gap-3 hover:bg-blue-700 rounded-md p-2 cursor-pointer">
+          <li className="flex items-center gap-3 hover:bg-blue-700 rounded-md p-2 cursor-pointer"
+          onClick={() => onItemClick(2)}>
             <FaChalkboardTeacher size={20} />
             <span>Training</span>
           </li>
-          <li className="flex items-center gap-3 hover:bg-blue-700 rounded-md p-2 cursor-pointer">
+          <li className="flex items-center gap-3 hover:bg-blue-700 rounded-md p-2 cursor-pointer"
+          onClick={() => onItemClick(3)}>
             <FaBriefcase size={20} />
             <span>Placement</span>
           </li>
         </ul>
       </div>
 
-      {/* Content Area */}
+     
       <div className="flex-1 ml-0 md:ml-64">
-        {/* Mobile Toggle Button */}
+       
         <button
           className="absolute top-4 left-4 text-blue-800 md:hidden z-50"
           onClick={toggleSidebar}
@@ -51,13 +58,8 @@ const Sidebar: React.FC = () => {
           <FaBars size={24} />
         </button>
 
-        {/* Main Content */}
-        <div className="p-4">
-          <h1 className="text-3xl font-bold text-gray-800">Welcome to the Admin Panel</h1>
-          <p className="mt-4 text-gray-600">
-            Use the sidebar to navigate between sections.
-          </p>
-        </div>
+        
+       
       </div>
     </div>
   );

@@ -25,7 +25,7 @@ const teamMembers = [
 const AboutUs: React.FC<AboutProps> = () => {
   return (
     <div className="flex flex-col w-screen gap-20">
-      {/* About component */}
+      
       <div>
         <div className="text-3xl md:text-4xl font-extrabold text-center mt-5 mb-10 text-[#0000FF]">
           About Us
@@ -37,7 +37,7 @@ const AboutUs: React.FC<AboutProps> = () => {
           distant education, specialized training programs, and seamless placement support.
         </div>
 
-        {/* Values section */}
+       
         <div className="text-2xl md:text-3xl font-bold text-center mt-9 mb-5 text-[#000000]">
           Our Values
         </div>
@@ -61,7 +61,7 @@ const AboutUs: React.FC<AboutProps> = () => {
         </div>
       </div>
 
-      {/* Goals section */}
+     
       <div className="flex flex-col justify-center items-center">
         <div className="text-2xl md:text-3xl font-bold text-center mb-5 text-[#000000]">
           Our Goals
@@ -85,7 +85,7 @@ const AboutUs: React.FC<AboutProps> = () => {
         </p>
       </div>
 
-      {/* Team section */}
+      
       <div className="flex flex-col justify-center items-center">
         <div className="text-2xl md:text-3xl font-bold text-center mb-5 text-[#000000]">
           Our Team

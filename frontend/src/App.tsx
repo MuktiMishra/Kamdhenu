@@ -8,51 +8,48 @@ import Gallery from './Pages/Gallery'
 import Programs from './Pages/Programs'
 import ContactUs from './Pages/ContactUs'
 import Testimonials from './Pages/Testimonials'
-import { BrowserRouter as Router , Routes , Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import AdminLogin from './Pages/admin/AdminLogin'
 import Sidebar from './Components/admin/Sidebar'
-import DataTable from './Pages/admin/DataTable'
-import EducationForm from './Components/Application/EducationForm'
-import SupportForm from './Components/Application/SupportForm'
+import AdminDashboard from './Pages/admin/AdminDashboard'
 
-function App() {
-  
+function AppContent() {
+  const location = useLocation()
+
+
+  const isAdminRoute = location.pathname.startsWith('/admin')
 
   return (
-    <>
-    <div className='w-full max-w-screen overflow-hidden'>
-      {/* <Router>
-        <Header />
-        <Routes>
-          <Route path='/' element={<LandingPage />} />
-          <Route path='/aboutus' element={<AboutUs />} />
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/gallery' element={<Gallery />} />
-          <Route path='/programs' element={<Programs />} />
-          <Route path='/contact' element={<ContactUs />} />
-          <Route path='/testimonials' element={<Testimonials />} />
-          <Route path='/admin/login' element={<AdminLogin />} />
-          <Route path='/admin/dashboard' element={<Sidebar />} />
-        </Routes>
-      </Router>
-      <Footer /> */}
+    <div className="w-full max-w-screen overflow-hidden">
+     
+      {!isAdminRoute && <Header />}
 
-      <SupportForm />
-
-      
-      
-      
-
-      
-
-      
-
-    </div>
-      
+      <Routes>
+        
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/programs" element={<Programs />} />
+        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/testimonials" element={<Testimonials />} />
 
         
-    </>
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+      </Routes>
+
+      {!isAdminRoute && <Footer />}
+    </div>
+  )
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
   )
 }
 

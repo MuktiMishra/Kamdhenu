@@ -28,7 +28,7 @@ const AdminLogin: React.FC = () => {
       </div>
 
       <div className="flex flex-col md:flex-row justify-center items-center w-full max-w-4xl gap-5">
-        {/* Left Image Section */}
+     
         <div className="hidden md:flex items-center justify-center w-full">
           <img
             src="admin.png"
@@ -37,7 +37,7 @@ const AdminLogin: React.FC = () => {
           />
         </div>
 
-        {/* Form Section */}
+      
         <div className="flex flex-col w-full md:w-[60%] max-w-sm mx-auto md:mx-0 shadow-md rounded-md bg-white p-5 md:p-8">
           <div className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#000000]">
             Login

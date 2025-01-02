@@ -38,13 +38,13 @@ const SupportForm: React.FC = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    // Validation for numeric fields (institute fees, salary)
+    
     if (isNaN(Number(formData.instituteFees)) || isNaN(Number(formData.salary))) {
       alert("Please enter valid numeric values for institute fees and salary");
       return;
     }
 
-    // Check if all required fields are filled
+    
     for (const field in formData) {
       if (!formData[field as keyof FormData]) {
         alert(`Please fill the ${field} field`);
@@ -52,7 +52,7 @@ const SupportForm: React.FC = () => {
       }
     }
 
-    // Submit the form
+
     console.log("Form Submitted", formData);
   };
 
@@ -78,7 +78,7 @@ const SupportForm: React.FC = () => {
             Support Information
           </div>
           <form className="grid grid-cols-1 sm:grid-cols-2 gap-6" onSubmit={handleSubmit}>
-            {/* Form Fields */}
+           
             <div>
               <label className="block text-sm font-medium text-gray-700">
                 Support

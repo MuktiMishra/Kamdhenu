@@ -36,7 +36,7 @@ const PersonalInfoForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validation for email and Aadhar number
+    
     const emailRegex = /^[\w-.]+@[\w-]+\.[a-z]{2,4}$/i;
     const aadharRegex = /^\d{12}$/;
 
@@ -50,7 +50,6 @@ const PersonalInfoForm = () => {
       return;
     }
 
-    // Check if all required fields are filled
     for (const field in formData) {
       if (field !== "alternateMobileNumber" && field !== "termsAccepted" && !formData[field]) {
         alert(`Please fill the ${field} field`);
@@ -63,7 +62,7 @@ const PersonalInfoForm = () => {
       return;
     }
 
-    // Submit the form
+    
     console.log("Form Submitted", formData);
   };
 
@@ -87,7 +86,7 @@ const PersonalInfoForm = () => {
             Personal Information
           </div>
           <form className="grid grid-cols-1 sm:grid-cols-2 gap-6" onSubmit={handleSubmit}>
-            {/* Form Fields */}
+           
             <div>
               <label className="block text-sm font-medium text-gray-700">
                 Sevayojan Reg. No

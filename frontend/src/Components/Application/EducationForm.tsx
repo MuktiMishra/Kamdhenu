@@ -28,13 +28,13 @@ const EducationForm: React.FC = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    // Validation for percentage
+
     if (isNaN(Number(formData.percentage)) || Number(formData.percentage) < 0 || Number(formData.percentage) > 100) {
       alert("Please enter a valid percentage between 0 and 100");
       return;
     }
 
-    // Check if all required fields are filled
+    
     for (const field in formData) {
       if (!formData[field as keyof FormData]) {
         alert(`Please fill the ${field} field`);
@@ -42,7 +42,7 @@ const EducationForm: React.FC = () => {
       }
     }
 
-    // Submit the form
+   
     console.log("Form Submitted", formData);
   };
 
@@ -66,7 +66,7 @@ const EducationForm: React.FC = () => {
             Qualification Information
           </div>
           <form className="grid grid-cols-1 sm:grid-cols-2 gap-6" onSubmit={handleSubmit}>
-            {/* Form Fields */}
+           
             <div>
               <label className="block text-sm font-medium text-gray-700">
                 Qualification Board
@@ -127,7 +127,6 @@ const EducationForm: React.FC = () => {
               </select>
             </div>
 
-            {/* Date Field */}
             <div>
               <label className="block text-sm font-medium text-gray-700">
                 Date
