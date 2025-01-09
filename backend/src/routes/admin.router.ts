@@ -5,4 +5,5 @@ const adminRouter = express.Router();
 
 adminRouter.route('/signin').post(signInAdmin);
 
+
 export default adminRouter;

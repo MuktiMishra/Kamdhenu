@@ -26,16 +26,16 @@ enum Support {
 }
 
 model Student {
-  student_id   Int              @unique @default(autoincrement())
   firstName    String
   lastName     String
   aadharNumber String           @id @unique
   emailId      String           @unique
-  password     String
+  phone_no     String           @unique @default("")
   eforms       EducationDetail?
-  supportType  Support
+  tform        trainingDetail?
+  supportType  Support          @default(EDUCATION)
   paid         Boolean          @default(false)
-  location     String
+  location     String           @default("")
   Reg_Time     DateTime         @default(now())
 }
 
@@ -47,12 +47,25 @@ enum Division {
 
 model EducationDetail {
   eform_id      Int      @id @default(autoincrement())
-  student       Student  @relation(fields: [student_id], references: [student_id])
-  student_id    Int      @unique
+  student       Student  @relation(fields: [aadharStudent], references: [aadharNumber])
+  aadharStudent String   @unique
   qualification String
   passingYear   Int
   division      Division
   institute     String
   percentage    Float?   @default(00.00)
   board         String
+}
+
+model trainingDetail {
+  tform_id          Int     @id @default(autoincrement())
+  student           Student @relation(fields: [aadharStudent], references: [aadharNumber])
+  aadharStudent     String  @unique
+  isRegularTraining Boolean @default(false) // false means -> onsite and true means -> regular
+  sector            String
+  role              String
+  organization      String
+  trainingLocation  String
+  isPaid            Boolean @default(false)
+  payAmt            Int     @default(0)
 }

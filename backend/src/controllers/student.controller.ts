@@ -6,6 +6,7 @@ import bcrypt from 'bcrypt'
 import {ApiResponse} from "../util/ApiResponse.js";
 import jwt from 'jsonwebtoken'
 import {RequestWithStudent} from "../util/RequestWithStudent";
+import {RequestWithAdmin} from "../util/RequestWithAdmin";
 
 // PM TESTED
 const signUpController = asyncHandler(async (req: Request, res: Response)=> {
@@ -118,4 +119,47 @@ const verifyToken = asyncHandler(async (req: RequestWithStudent, res: Response)=
     }
 })
 
-export { signUpController, signInController, verifyToken }
+// PM TESTED
+const getStudentDataForDashboard = asyncHandler(async (req: RequestWithAdmin, res: Response) => {
+
+    try {
+        const students = await prisma.student.findMany({});
+
+        console.log(students);
+        if (!students || students.length === 0) {
+            return res.status(403).json(new ApiError(403, "No students found"));
+        }
+
+        return res.status(200).json(new ApiResponse(200, students, "Students fetched successfully"));
+    } catch (err: any) {
+        return res.status(500).json(new ApiError(500, "Internal server error"))
+    }
+
+})
+
+const getDetailedStudentData = asyncHandler(async (req: Request, res: Response) => {
+    const { aadhar } = req.params;
+
+    try {
+
+        const studentData = await prisma.student.findUnique({
+            where: {
+                aadharNumber: aadhar
+            }, include: {
+                eforms: true
+            }
+        })
+
+        if (!studentData) {
+            return res.status(403).json(new ApiError(400, "No student found"))
+        }
+
+        return res.status(200).json(new ApiResponse(200, studentData, "Student found"));
+
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(new ApiError(500, "Internal server error"))
+    }
+})
+
+export { signUpController, signInController, verifyToken, getStudentDataForDashboard, getDetailedStudentData }
