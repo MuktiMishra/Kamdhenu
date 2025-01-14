@@ -10,8 +10,8 @@ import ContactUs from './Pages/ContactUs'
 import Testimonials from './Pages/Testimonials'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import AdminLogin from './Pages/admin/AdminLogin'
-import Sidebar from './Components/admin/Sidebar'
 import AdminDashboard from './Pages/admin/AdminDashboard'
+import PersonalInfoForm from "./Components/Application/PersonalInfoForm.tsx";
 
 function AppContent() {
   const location = useLocation()
@@ -38,6 +38,7 @@ function AppContent() {
         
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path={"/test"} element={<PersonalInfoForm />} />
       </Routes>
 
       {!isAdminRoute && <Footer />}

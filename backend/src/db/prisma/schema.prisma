@@ -19,53 +19,53 @@ model Admin {
   role     Role
 }
 
-enum Support {
-  EDUCATION
-  PLACEMENT
-  TRAINING
-}
-
 model Student {
-  firstName    String
-  lastName     String
-  aadharNumber String           @id @unique
-  emailId      String           @unique
-  phone_no     String           @unique @default("")
-  eforms       EducationDetail?
-  tform        trainingDetail?
-  supportType  Support          @default(EDUCATION)
-  paid         Boolean          @default(false)
-  location     String           @default("")
-  Reg_Time     DateTime         @default(now())
+  id                    String            @id @default(cuid())
+  firstName             String
+  lastName              String
+  aadharNumber          String            @unique
+  emailId               String            @unique
+  phoneNo               String            @unique @default("")
+  address               String
+  state                 String
+  city                  String
+  dob                   DateTime
+  gender                String
+  category              String
+  religion              String
+  residentialStatus     String
+  financialStatus       String
+  fathersOccupation     String
+  guardianContactNumber String
+  termsAccepted         Boolean           @default(true)
+  education             StudentEducation?
+  support               StudentSupport?
+  regTime               DateTime          @default(now())
 }
 
-enum Division {
-  FIRST
-  SECOND
-  THIRD
+model StudentEducation {
+  id                 String   @id @default(cuid())
+  studentId          String   @unique
+  qualificationBoard String
+  passingYear        String
+  percentage         String
+  division           String
+  date               DateTime
+  student            Student  @relation(fields: [studentId], references: [id])
 }
 
-model EducationDetail {
-  eform_id      Int      @id @default(autoincrement())
-  student       Student  @relation(fields: [aadharStudent], references: [aadharNumber])
-  aadharStudent String   @unique
-  qualification String
-  passingYear   Int
-  division      Division
-  institute     String
-  percentage    Float?   @default(00.00)
-  board         String
-}
-
-model trainingDetail {
-  tform_id          Int     @id @default(autoincrement())
-  student           Student @relation(fields: [aadharStudent], references: [aadharNumber])
-  aadharStudent     String  @unique
-  isRegularTraining Boolean @default(false) // false means -> onsite and true means -> regular
-  sector            String
-  role              String
-  organization      String
-  trainingLocation  String
-  isPaid            Boolean @default(false)
-  payAmt            Int     @default(0)
+model StudentSupport {
+  id             String  @id @default(cuid())
+  studentId      String  @unique
+  support        String
+  supportType    String
+  course         String
+  duration       String
+  instituteFees  String
+  trainingSector String
+  location       String
+  mode           String
+  role           String
+  salary         String
+  student        Student @relation(fields: [studentId], references: [id])
 }

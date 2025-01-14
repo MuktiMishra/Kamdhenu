@@ -2,7 +2,6 @@ import express from 'express'
 import {
     getDetailedStudentData,
     getStudentDataForDashboard,
-    signInController,
     signUpController,
     verifyToken
 } from "../controllers/student.controller.js";
@@ -14,7 +13,7 @@ import adminRoleMiddleware from "../middlewares/AdminRoleMiddleware.js";
 const userRouter = express.Router();
 
 userRouter.route('/signup').post(signUpController);
-userRouter.route('/signin').post(signInController);
+// userRouter.route('/signin').post(signInController);
 userRouter.route('/verify').post(studentAuthMiddleware, verifyToken);
 userRouter.route('/getStudents').get(getStudentDataForDashboard);
 userRouter.route('/test').post(adminAuthMiddleware, adminRoleMiddleware("MASTER"));

@@ -7,8 +7,11 @@ interface FormData {
   division: string;
   date: string;
 }
+interface EducationFormProps {
+  onSubmit: (data: FormData) => void;
+}
 
-const EducationForm: React.FC = () => {
+const EducationForm: React.FC<EducationFormProps> = ({onSubmit}) => {
   const [formData, setFormData] = useState<FormData>({
     qualificationBoard: "",
     passingYear: "",
@@ -34,7 +37,7 @@ const EducationForm: React.FC = () => {
       return;
     }
 
-    
+
     for (const field in formData) {
       if (!formData[field as keyof FormData]) {
         alert(`Please fill the ${field} field`);
@@ -42,7 +45,8 @@ const EducationForm: React.FC = () => {
       }
     }
 
-   
+    onSubmit(formData)
+
     console.log("Form Submitted", formData);
   };
 
@@ -66,7 +70,7 @@ const EducationForm: React.FC = () => {
             Qualification Information
           </div>
           <form className="grid grid-cols-1 sm:grid-cols-2 gap-6" onSubmit={handleSubmit}>
-           
+
             <div>
               <label className="block text-sm font-medium text-gray-700">
                 Qualification Board
@@ -150,7 +154,7 @@ const EducationForm: React.FC = () => {
               Submit and Proceed
             </button>
           </div>
-          
+
         </div>
       </div>
     </div>
