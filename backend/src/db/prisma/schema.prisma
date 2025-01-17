@@ -1,15 +1,23 @@
 generator client {
   provider = "prisma-client-js"
+  
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  
 }
 
 enum Role {
   MASTER
   STAFF
+}
+
+enum SupportType {
+  EDUCATION
+  TRAINING
+  PLACEMENT
 }
 
 model Admin {
@@ -20,12 +28,11 @@ model Admin {
 }
 
 model Student {
-  id                    String            @id @default(cuid())
-  firstName             String
-  lastName              String
-  aadharNumber          String            @unique
-  emailId               String            @unique
-  phoneNo               String            @unique @default("")
+  id                    String                  @id @default(cuid())
+  candidateName         String
+  aadharNumber          String                  @unique
+  emailId               String                  @unique
+  phoneNo               String                  @unique @default("")
   address               String
   state                 String
   city                  String
@@ -37,10 +44,11 @@ model Student {
   financialStatus       String
   fathersOccupation     String
   guardianContactNumber String
-  termsAccepted         Boolean           @default(true)
+  termsAccepted         Boolean                 @default(true)
+  supportType           SupportType?
   education             StudentEducation?
-  support               StudentSupport?
-  regTime               DateTime          @default(now())
+  trainingSupport       TrainingStudentSupport?
+  regTime               DateTime                @default(now())
 }
 
 model StudentEducation {
@@ -54,10 +62,9 @@ model StudentEducation {
   student            Student  @relation(fields: [studentId], references: [id])
 }
 
-model StudentSupport {
+model TrainingStudentSupport {
   id             String  @id @default(cuid())
   studentId      String  @unique
-  support        String
   supportType    String
   course         String
   duration       String

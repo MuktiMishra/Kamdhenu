@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from 'axios'
+import { toast } from 'react-toastify';
 
 
 const steps = ["Personal Information", "Education Details", "Support Details"];
@@ -8,7 +9,7 @@ export default function Signup() {
     const [currentStep, setCurrentStep] = useState(0);
     const [formData, setFormData] = useState({
         personalInfo: {
-            sevayojanRegNo: "",
+            mobileNumber: "",
             sevayojanRegDate: "",
             aadharNumber: "",
             emailId: "",
@@ -18,7 +19,6 @@ export default function Signup() {
             address: "",
             state: "",
             city: "",
-            mobileNumber: "",
             alternateMobileNumber: "",
             dob: "",
             gender: "",
@@ -38,16 +38,7 @@ export default function Signup() {
             date: "",
         },
         supportInfo: {
-            support: "",
             supportType: "",
-            course: "",
-            duration: "",
-            instituteFees: "",
-            trainingSector: "",
-            location: "",
-            mode: "",
-            role: "",
-            salary: "",
         },
     });
 
@@ -73,8 +64,14 @@ export default function Signup() {
         };
         console.log("Final Form Data:", finalData);
 
-        const response: any = await axios.post("http://localhost:8000/api/user/signup", formData)
+        const response: any = await axios.post(`${import.meta.env.VITE_APP_API_URL}/user/signup`, finalData)
         console.log(response)
+
+        if (response.status === 201 || response.status === 200) {
+            toast.success("Created account successfully");
+        } else {
+            toast.error("Couldn't create account")
+        }
     };
 
     return (
@@ -141,12 +138,12 @@ function PersonalInfoForm({ data, onSubmit }: any) {
             <form className="grid grid-cols-1 sm:grid-cols-2 gap-6" onSubmit={onSubmit}>
                 <div>
                     <label className="block text-sm font-medium text-gray-700">
-                        Sevayojan Reg. No
+                        Mobile Number (+91)
                     </label>
                     <input
                         type="text"
-                        name="sevayojanRegNo"
-                        value={form.sevayojanRegNo}
+                        name="mobileNumber"
+                        value={form.mobileNumber}
                         onChange={handleChange}
                         className="w-full p-3 border rounded-md bg-gray-100"
                         required
@@ -155,12 +152,12 @@ function PersonalInfoForm({ data, onSubmit }: any) {
 
                 <div>
                     <label className="block text-sm font-medium text-gray-700">
-                        Sevayojan Reg. Date
+                        Date Of Birth
                     </label>
                     <input
                         type="date"
-                        name="sevayojanRegDate"
-                        value={form.sevayojanRegDate}
+                        name="dob"
+                        value={form.dob}
                         onChange={handleChange}
                         className="w-full p-3 border rounded-md bg-gray-100"
                         required
@@ -535,23 +532,7 @@ function SupportForm({ data, onSubmit, onPrevious }: any) {
     };
     return (
         <form className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div>
-                <label className="block text-sm font-medium text-gray-700">
-                    Support
-                </label>
-                <select
-                    name="support"
-                    value={form.support}
-                    onChange={handleChange}
-                    className="w-full p-3 border rounded-md bg-gray-100"
-                    required
-                >
-                    <option value="">Select</option>
-                    <option value="Education">Education</option>
-                    <option value="Training">Training</option>
-                    <option value="Placement">Placement</option>
-                </select>
-            </div>
+        
 
             <div>
                 <label className="block text-sm font-medium text-gray-700">
@@ -565,125 +546,13 @@ function SupportForm({ data, onSubmit, onPrevious }: any) {
                     required
                 >
                     <option value="">Select</option>
-                    <option value="Paid">Paid</option>
-                    <option value="Unpaid">Unpaid</option>
+                    <option value="EDUCATION">EDUCATION</option>
+                    <option value="PLACEMENT">PLACEMENT</option>
+                    <option value="TRAINING">TRAINING</option>
                 </select>
             </div>
 
-            <div>
-                <label className="block text-sm font-medium text-gray-700">
-                    Course
-                </label>
-                <input
-                    type="text"
-                    name="course"
-                    value={form.course}
-                    onChange={handleChange}
-                    className="w-full p-3 border rounded-md bg-gray-100"
-                    required
-                />
-            </div>
-
-            <div>
-                <label className="block text-sm font-medium text-gray-700">
-                    Duration
-                </label>
-                <input
-                    type="text"
-                    name="duration"
-                    value={form.duration}
-                    onChange={handleChange}
-                    className="w-full p-3 border rounded-md bg-gray-100"
-                    required
-                />
-            </div>
-
-            <div>
-                <label className="block text-sm font-medium text-gray-700">
-                    Institute Fees
-                </label>
-                <input
-                    type="text"
-                    name="instituteFees"
-                    value={form.instituteFees}
-                    onChange={handleChange}
-                    className="w-full p-3 border rounded-md bg-gray-100"
-                    required
-                />
-            </div>
-
-            <div>
-                <label className="block text-sm font-medium text-gray-700">
-                    Training Sector
-                </label>
-                <input
-                    type="text"
-                    name="trainingSector"
-                    value={form.trainingSector}
-                    onChange={handleChange}
-                    className="w-full p-3 border rounded-md bg-gray-100"
-                    required
-                />
-            </div>
-
-            <div>
-                <label className="block text-sm font-medium text-gray-700">
-                    Location
-                </label>
-                <input
-                    type="text"
-                    name="location"
-                    value={form.location}
-                    onChange={handleChange}
-                    className="w-full p-3 border rounded-md bg-gray-100"
-                    required
-                />
-            </div>
-
-            <div>
-                <label className="block text-sm font-medium text-gray-700">
-                    Mode
-                </label>
-                <select
-                    name="mode"
-                    value={form.mode}
-                    onChange={handleChange}
-                    className="w-full p-3 border rounded-md bg-gray-100"
-                    required
-                >
-                    <option value="">Select</option>
-                    <option value="Online">Online</option>
-                    <option value="Onsite">Onsite</option>
-                </select>
-            </div>
-
-            <div>
-                <label className="block text-sm font-medium text-gray-700">
-                    Role
-                </label>
-                <input
-                    type="text"
-                    name="role"
-                    value={form.role}
-                    onChange={handleChange}
-                    className="w-full p-3 border rounded-md bg-gray-100"
-                    required
-                />
-            </div>
-
-            <div>
-                <label className="block text-sm font-medium text-gray-700">
-                    Salary
-                </label>
-                <input
-                    type="text"
-                    name="salary"
-                    value={form.salary}
-                    onChange={handleChange}
-                    className="w-full p-3 border rounded-md bg-gray-100"
-                    required
-                />
-            </div>
+            
 
             <div className="sm:col-span-2 flex justify-between">
                 {onPrevious && (

@@ -6,11 +6,11 @@ import {ApiError} from "../util/ApiError.js";
 
 // PM TESTED
 const adminAuthMiddleware = asyncHandler(async (req: RequestWithAdmin, res: Response, next: NextFunction) => {
-    const { token } = req.body;
+    const { authToken } = req.body;
 
     try {
 
-        const verify: any = jwt.verify(token, process.env.ADMIN_AUTH_TOKEN_PASS!)
+        const verify: any = jwt.verify(authToken, process.env.ADMIN_AUTH_TOKEN_PASS!)
 
         console.log(verify)
 

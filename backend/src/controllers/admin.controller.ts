@@ -4,8 +4,9 @@ import {ApiError} from "../util/ApiError.js";
 import {ApiResponse} from "../util/ApiResponse.js";
 import prisma from "../util/prismaClient.js";
 import jwt from 'jsonwebtoken'
+import { RequestWithAdmin } from "../util/RequestWithAdmin.js";
 
-
+// tested
 const signInAdmin = asyncHandler(async (req: Request, res: Response) => {
     const { username, password, userRole } = req.body;
 
@@ -46,4 +47,16 @@ const signInAdmin = asyncHandler(async (req: Request, res: Response) => {
 
 });
 
-export {signInAdmin}
+const verifyUser = asyncHandler(
+    async (req: RequestWithAdmin, res: Response) => {
+      const admin = req.admin;
+  
+      if (admin) {
+        return res.status(200).json(new ApiResponse(200, {}, "Good to go"));
+      }
+      return res.redirect("/");
+    }
+  );
+  
+
+export {signInAdmin, verifyUser}

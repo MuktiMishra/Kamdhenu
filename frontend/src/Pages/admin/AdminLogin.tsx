@@ -1,15 +1,21 @@
 import React, { useState } from "react";
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 const AdminLogin: React.FC = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    role: "",
+    userRole: "",
     username: "",
     password: "",
   });
 
   const handleRoleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    setFormData({ ...formData, role: value });
+    const value = e.target.value.toUpperCase()
+    console.log(value)
+    setFormData({ ...formData, userRole: value });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,6 +25,20 @@ const AdminLogin: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form Submitted: ", formData);
+
+    const response: any = await axios.post(`${import.meta.env.VITE_APP_API_URL}/admin/signin`, formData)
+    
+    const {token, role} = response.data.data; 
+
+    Cookies.set("token", token); 
+    Cookies.set("role", role); 
+
+    if (response.status === 201 || response.status === 200){
+      toast.success("Login successful")
+      navigate("/admin/dashboard")
+    } else {
+      toast.error("login failed")
+    }
   };
 
   return (
@@ -52,16 +72,16 @@ const AdminLogin: React.FC = () => {
             </label>
             <select
               id="role"
-              name="role"
-              value={formData.role}
+              name="userRole"
+              value={formData.userRole}
               onChange={handleRoleChange}
               className="w-full h-10 px-3 rounded-md bg-slate-200 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="" disabled>
                 Role
               </option>
-              <option value="Master">Master</option>
-              <option value="Staff">Staff</option>
+              <option value="MASTER">MASTER</option>
+              <option value="STAFF">STAFF</option>
             </select>
           </div>
 

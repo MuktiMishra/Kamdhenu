@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import Sidebar from "../../Components/admin/Sidebar";
 import DataTable from "../../Components/admin/DataTable";
-import Placement from "../../Components/admin/Placement";
 
 const AdminDashboard: React.FC = () => {
   
   const [activeComponent, setActiveComponent] = useState<number>(1);
 
+  console.log(activeComponent)
   
   const renderComponent = () => {
     switch (activeComponent) {
       case 1:
-        return <DataTable />;
+        return <DataTable tabContext="Education" />; // education
       case 2:
-        return <DataTable />;
+        return <DataTable tabContext="Training" />; // training
       case 3:
-        return <Placement />;
+        return <DataTable tabContext="Placement" />; // placement
       default:
-        return <DataTable/>;
+        return <DataTable tabContext="default" />;
     }
   };
 

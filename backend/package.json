@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsc -b && node dist/index.js",
-    "seed": "tsc -b && node dist/db/prisma/seedDB.js"
+    "seed": "tsc -b && node dist/db/prisma/seedDB.js", 
+    "generate": "cd ./src/db/prisma && npx prisma generate"
   },
   "author": "Krypton and MuktiMishra",
   "license": "ISC",
