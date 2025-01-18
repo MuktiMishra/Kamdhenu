@@ -6,7 +6,7 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ }: FooterProps) => {
   return (
-    <div className="sticky mb-0 z-10 w-screen bg-[#0127ff] opacity-75 flex flex-col mt-12 md:mt-24">
+    <div className="sticky mb-0 py-10 z-10 w-screen bg-[#0127ff] opacity-75 flex flex-col mt-12 md:mt-24">
       <div className="flex flex-col lg:flex-row gap-7 justify-between px-5">
         {/*Heading */}
         <div className="flex flex-col justify-start text-white text-2xl md:text-4xl font-bold lg:mr-32 mt-4">
