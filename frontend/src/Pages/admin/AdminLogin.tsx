@@ -3,9 +3,11 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
+import AdminPNG from '/aseHi.png'
 
 const AdminLogin: React.FC = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false); 
   const [formData, setFormData] = useState({
     userRole: "",
     username: "",
@@ -25,20 +27,32 @@ const AdminLogin: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form Submitted: ", formData);
+    setIsLoading(true); 
 
-    const response: any = await axios.post(`${import.meta.env.VITE_APP_API_URL}/admin/signin`, formData)
-    
-    const {token, role} = response.data.data; 
+    try{
+        const response: any = await axios.post(`${import.meta.env.VITE_APP_API_URL}/admin/signin`, formData)
+      
+      const {token, role} = response.data.data; 
 
-    Cookies.set("token", token); 
-    Cookies.set("role", role); 
+      Cookies.set("token", token); 
+      Cookies.set("role", role); 
 
-    if (response.status === 201 || response.status === 200){
-      toast.success("Login successful")
-      navigate("/admin/dashboard")
-    } else {
-      toast.error("login failed")
+      if (response.status === 201 || response.status === 200){
+        toast.success("Login successful")
+        navigate("/admin/dashboard")
+         
+      } else {
+        
+        toast.error("login failed")
+      }
+
+    } catch(err: any){
+        console.log(err)
+    } finally {
+        setIsLoading(false); 
     }
+
+    
   };
 
   return (
@@ -49,11 +63,11 @@ const AdminLogin: React.FC = () => {
 
       <div className="flex flex-col md:flex-row justify-center items-center w-full max-w-4xl gap-5">
      
-        <div className="hidden md:flex items-center justify-center w-full">
+        <div className="hidden md:flex items-center justify-center w-full h-full">
           <img
-            src="admin.png"
+            src={AdminPNG}
             alt="Admin Illustration"
-            className="w-[70%] md:w-[50%] mt-5"
+            className="w-[30rem] h-[15rem] md:w-[50%] mt-5"
           />
         </div>
 
@@ -106,6 +120,7 @@ const AdminLogin: React.FC = () => {
           <button
             className="w-full h-10 font-semibold text-white bg-[#0000FF] hover:bg-blue-700 rounded-md transition mt-5"
             onClick={handleSubmit}
+            disabled={isLoading}
           >
             Login
           </button>
