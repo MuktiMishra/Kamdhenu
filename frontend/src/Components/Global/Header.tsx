@@ -10,13 +10,13 @@ const Header : React.FC<HeaderProps> = () => {
     return(
         <div className='sticky top-0 z-10 bg-white shadow-md'>
             <div 
-            className='flex justify-between items-center text-black py-6 px-8
+            className='flex justify-between lg:justify-around items-center text-black py-6 px-8
             md:px-32 bg-white drop-shadow-md' 
             >
                 
                 
                 <ul className='hidden xl:flex items-center gap-9 font-semibold text-base flex-nowrap'>
-                <span className='xl:text-xl text-lg font-bold text-blue-700 hover:scale-125 transition all justify-start'>
+                <span onClick={() => navigate('/')} className='cursor-pointer font-bold lg:text-[1.4rem] text-blue-700 hover:scale-125 transition all justify-start'>
                     Kamdhenu
                 </span>
                    
@@ -79,8 +79,8 @@ const Header : React.FC<HeaderProps> = () => {
                     </li>
                     </Link>
                     
-                    <Link to='/contactus'>
-                    <li  className='list-none w-full text-center p-4 hover:bg-blue-500 hover:text-white transition-all cursor-pointer'>
+                    <Link to='/contact'>
+                    <li onClick={() => setIsMenuOpen(false)} className='list-none w-full text-center p-4 hover:bg-blue-500 hover:text-white transition-all cursor-pointer'>
                         Contact Us
                     </li>
                     </Link>

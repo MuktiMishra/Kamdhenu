@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaArrowCircleRight, FaArrowCircleLeft } from "react-icons/fa";
+
 
 const Approach: React.FC = () => {
 
@@ -36,7 +36,7 @@ const Approach: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center mt-12 mb-12 bg-gray-200 p-6">
+    <div className="flex flex-col items-center justify-center mt-20 mb-12 bg-gray-200 p-6">
       <div className="text-3xl lg:text-5xl font-extrabold text-center mb-6 text-[#0000FF] p-4">
         Our Approach
       </div>
@@ -75,14 +75,14 @@ const Approach: React.FC = () => {
           onClick={prevSlide}
           className="absolute top-1/2 left-2 -translate-y-1/2 text-white rounded-full p-2 hover:bg-opacity-75 focus:outline-none"
         > 
-         <svg className="size-4 md:size-6" width="64px" height="64px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff" stroke-width="31.744"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M768 903.232l-50.432 56.768L256 512l461.568-448 50.432 56.768L364.928 512z" fill="#ffffff"></path></g></svg>
+         <svg className="size-4 md:size-6" width="64px" height="64px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff" strokeWidth="31.744"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M768 903.232l-50.432 56.768L256 512l461.568-448 50.432 56.768L364.928 512z" fill="#ffffff"></path></g></svg>
           
         </button>
         <button
           onClick={nextSlide}
           className="absolute top-1/2 right-2 -translate-y-1/2 text-white rounded-full p-2 hover:bg-opacity-75 focus:outline-none"
         >
-         <svg className="size-4 md:size-6" width="64px" height="64px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff" stroke-width="31.744" transform="rotate(180)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M768 903.232l-50.432 56.768L256 512l461.568-448 50.432 56.768L364.928 512z" fill="#ffffff"></path></g></svg>
+         <svg className="size-4 md:size-6" width="64px" height="64px" viewBox="0 0 1024 1024"  version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff" strokeWidth="31.744" transform="rotate(180)"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M768 903.232l-50.432 56.768L256 512l461.568-448 50.432 56.768L364.928 512z" fill="#ffffff"></path></g></svg>
         </button>
       </div>
     </div>

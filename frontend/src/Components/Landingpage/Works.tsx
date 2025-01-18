@@ -7,7 +7,7 @@ const Works : React.FC = () => {
     const navigate = useNavigate();
   return (
     <div className='mt-7'>
-        <div className='bg-gray-200 p-4 pb-6'>
+        <div className='bg-gray-100 p-4 pb-6'>
         <div className="text-3xl lg:text-5xl font-extrabold text-center mb-7 mt-6 text-[#0000FF]">
             How Kamdhenu Works ?
         </div>

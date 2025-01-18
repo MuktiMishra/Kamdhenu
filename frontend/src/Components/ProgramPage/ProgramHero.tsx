@@ -20,10 +20,10 @@ const ProgramHero: React.FC<HeroProps> = () => {
 
   return (
     <div>
-      <div className="text-3xl md:text-4xl font-extrabold text-center mt-5 text-[#0000FF]">
+      <div className="text-3xl md:text-4xl mb-[7rem] font-extrabold text-center mt-5 text-[#0000FF]">
         Programs
       </div>
-      <div className="w-screen flex flex-col-reverse md:grid md:grid-cols-2 mt-10 mb-10 md:mt-2 md:mb-2">
+      <div className="w-screen h-[35rem] flex flex-col-reverse md:grid md:grid-cols-2 mt-10 mb-10 md:mt-2 md:mb-2">
         {/* Text Section */}
         <div className="flex flex-col text-left gap-4 place-items-start ml-5 md:ml-12 mt-6 md:mt-24">
           <div className="text-3xl lg:text-6xl font-bold text-center lg:text-left text-black text-nowrap">
@@ -36,7 +36,7 @@ const ProgramHero: React.FC<HeroProps> = () => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -50, opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-3xl lg:text-6xl font-bold text-[#0000FF] text-center lg:text-left md:text-center text-nowrap"
+            className=" text-3xl lg:text-6xl font-bold text-[#0000FF] text-center lg:text-left md:text-center text-nowrap"
           >
             {words[currentIndex]}
           </motion.div>

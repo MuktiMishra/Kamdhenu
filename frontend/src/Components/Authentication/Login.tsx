@@ -1,4 +1,5 @@
 import React , {useState} from 'react'
+import { Link } from 'react-router-dom';
 
 interface SignupProps{
     children?: React.ReactNode; 
@@ -14,6 +15,7 @@ const Login : React.FC<SignupProps>= () => {
       
         const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=> {
           setFormData({...formData , [e.target.name]:e.target.value});
+          console.log(formData)
         }
       
         const handleSubmit = async (e: React.FormEvent) => {
@@ -27,7 +29,7 @@ const Login : React.FC<SignupProps>= () => {
         </div>
 
         <div className='grid grid-cols-1 md:grid-cols-2 justify-center items-start'>
-            <div className='items-center justify-center hidden m-3 md:flex' >
+            <div className='items-center justify-center m-3 md:flex' >
                 <img src='./Login.jpg' className='w-[80%] '/>
             </div>
 
@@ -37,8 +39,8 @@ const Login : React.FC<SignupProps>= () => {
                     Login
                 </div>
                 
-                <input type="number" className="w-72 lg:w-80 h-7 p-3 rounded-md bg-slate-200" placeholder="Aadhar Number" value={formData.aadharNumber} onChange={handleChange} />
-                <input type="password" className="w-72 lg:w-80 h-7 p-3 rounded-md bg-slate-200" placeholder="Password" value={formData.password} onChange={handleChange} />
+                <input type="number" className="w-72 lg:w-80 h-7 p-4 rounded-md bg-slate-200" name='aadharNumber' placeholder="Aadhar Number" onChange={handleChange} />
+                <input type="password" className="w-72 lg:w-80 h-7 p-4 rounded-md bg-slate-200" name='password' placeholder="Password" onChange={handleChange} />
                
 
                 <button 
@@ -48,7 +50,7 @@ const Login : React.FC<SignupProps>= () => {
                 </button>
                 
                 <div className="text-sm md:text-base text-center text-[#000000] mb-6">
-                    Don't have an account? <span className='text-[#0000ff]'>Signup</span>
+                    Don't have an account? <Link to="/signup"><span className='text-[#0000ff] cursor-pointer'>Signup</span></Link>
                 </div>
                 
             </div>
