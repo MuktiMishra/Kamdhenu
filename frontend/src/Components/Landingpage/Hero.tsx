@@ -1,5 +1,6 @@
 import React , {useState , useEffect}  from 'react'
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 interface HeroProps {
   children?: React.ReactNode;
@@ -8,6 +9,7 @@ interface HeroProps {
 const words = ["Education","Training" ,"Placement"];
 
 const Hero: React.FC<HeroProps> = () => {
+    const navigate =  useNavigate();
     const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -40,7 +42,7 @@ const Hero: React.FC<HeroProps> = () => {
            >
             {words[currentIndex]}
           </motion.div>
-          <button className='h-10 w-32 bg-[#B0C4DE] rounded-xl mt-4 text-bold  hover:bg-blue-500 hover:text-white text-lg'>Join Us Now</button>
+          <button onClick={()=> navigate("/signup")} className='h-10 w-32 bg-[#B0C4DE] rounded-xl mt-4 text-bold  hover:bg-blue-500 hover:text-white text-lg'>Join Us Now</button>
         </div>
         <div className="w-full h-full md:hidden">
             <img

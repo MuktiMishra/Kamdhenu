@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const ServicesSection : React.FC = () => {
   return (
-    <div className='mt-3'>
+    <div className='mt-3 mb-20'>
         <div className="text-3xl lg:text-5xl font-extrabold text-center mb-10 text-[#0000FF]">
             Our Services
         </div>
