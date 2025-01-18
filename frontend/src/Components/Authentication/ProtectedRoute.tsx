@@ -31,11 +31,11 @@ const ProtectedRoute = ({children}: {children: React.ReactNode}) => {
                 setVerified(true);
             } else {
                 console.log('User is not verified');
-                navigate('/');
+                navigate('/admin/login');
             }
         } catch (error) {
             console.log('Error verifying user:', error);
-            navigate('/');
+            navigate('/admin/login');
         }
     }
 
