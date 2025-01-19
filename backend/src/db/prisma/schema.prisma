@@ -1,12 +1,10 @@
 generator client {
   provider = "prisma-client-js"
-  
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  
 }
 
 enum Role {
@@ -21,18 +19,20 @@ enum SupportType {
 }
 
 model Admin {
-  id       Int    @id @default(autoincrement())
-  username String @unique
-  password String
-  role     Role
+  id            Int                      @id @default(autoincrement())
+  username      String                   @unique
+  password      String
+  role          Role
+  placementData PlacementStudentSupport?
+  trainingData  TrainingStudentSupport?
 }
 
 model Student {
-  id                    String                  @id @default(cuid())
+  id                    String                   @id @default(cuid())
   candidateName         String
-  aadharNumber          String                  @unique
-  emailId               String                  @unique
-  phoneNo               String                  @unique @default("")
+  aadharNumber          String                   @unique
+  emailId               String                   @unique
+  phoneNo               String                   @unique @default("")
   address               String
   state                 String
   city                  String
@@ -44,11 +44,12 @@ model Student {
   financialStatus       String
   fathersOccupation     String
   guardianContactNumber String
-  termsAccepted         Boolean                 @default(true)
+  termsAccepted         Boolean                  @default(true)
   supportType           SupportType?
   education             StudentEducation?
   trainingSupport       TrainingStudentSupport?
-  regTime               DateTime                @default(now())
+  placementSupport      PlacementStudentSupport?
+  regTime               DateTime                 @default(now())
 }
 
 model StudentEducation {
@@ -64,15 +65,29 @@ model StudentEducation {
 
 model TrainingStudentSupport {
   id             String  @id @default(cuid())
-  studentId      String  @unique
-  supportType    String
-  course         String
-  duration       String
-  instituteFees  String
+  studentAadhar  String  @unique
+  paid           Boolean @default(false)
+  fees           String  @default("")
   trainingSector String
   location       String
+  organization   String
   mode           String
   role           String
-  salary         String
-  student        Student @relation(fields: [studentId], references: [id])
+  FilledBy       String  @unique
+  Admin          Admin   @relation(fields: [FilledBy], references: [username])
+  student        Student @relation(fields: [studentAadhar], references: [aadharNumber])
+}
+
+model PlacementStudentSupport {
+  id            String  @id @default(cuid())
+  studentAadhar String  @unique
+  student       Student @relation(fields: [studentAadhar], references: [aadharNumber])
+  industry      String
+  location      String
+  salary        String
+  company       String
+  profileJob    String
+  paid          Boolean @default(false)
+  FilledBy      String  @unique
+  Admin         Admin   @relation(fields: [FilledBy], references: [username])
 }

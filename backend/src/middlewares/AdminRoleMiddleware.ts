@@ -6,6 +6,7 @@ import {ApiError} from "../util/ApiError.js";
 //PM TESTED
 const adminRoleMiddleware = (role: string) => asyncHandler(async (req: RequestWithAdmin, res: Response, next: NextFunction)=> {
     const admin = req.admin;
+    console.log("came in role")
 
     try {
         if (!admin) {

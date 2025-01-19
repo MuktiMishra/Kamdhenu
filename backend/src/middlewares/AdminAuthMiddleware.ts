@@ -12,16 +12,17 @@ const adminAuthMiddleware = asyncHandler(async (req: RequestWithAdmin, res: Resp
 
         const verify: any = jwt.verify(authToken, process.env.ADMIN_AUTH_TOKEN_PASS!)
 
-        console.log(verify)
+        console.log("verify is ", verify)
 
         req.admin = verify;
 
-        console.log(req.admin)
+        console.log("admin is", req.admin)
         next();
 
 
 
     } catch (err: any) {
+        console.log("came in error")
         console.log("admin role error: ", err.name)
         if (err.name === "JsonWebTokenError") {
             return res.status(401).json(new ApiError(401, "token is bad"))

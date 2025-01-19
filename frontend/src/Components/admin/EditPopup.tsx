@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 interface EditPopupProps {
   tabContext: string;
@@ -18,9 +19,24 @@ const EditPopup: React.FC<EditPopupProps> = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    console.log(formData)
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    console.log("We are here")
+    console.log(!formData.sector.trim()); 
+    console.log(onSubmit)
+    switch(tabContext){
+      case 'Training': 
+        if (!formData.mode || !formData.sector.trim() || !formData.role.trim() || !formData.organization.trim() || !formData.paid || !formData.location.trim()){
+          toast.error("fill the data, data is empty")
+          return;  
+        }
+        break; 
+    }
+    if (!formData.charges) {
+      formData.charges = 0; 
+    }
     onSubmit(formData);
     onClose();
   };
@@ -32,13 +48,17 @@ const EditPopup: React.FC<EditPopupProps> = ({
           <>
             <label>
               <strong>Regular/On-field Training:</strong>
-              <input
-                type="text"
-                name="trainingType"
-                value={formData.trainingType || ""}
-                onChange={handleChange}
-                className="border rounded-md p-2 w-full"
-              />
+              <select
+                    name="mode"
+                    value={formData.mode}
+                    onChange={handleChange}
+                    className="w-full p-3 border rounded-md bg-gray-100"
+                    required
+                >
+                    <option value="">Select</option>
+                    <option value="REGULAR">REGULAR</option>
+                    <option value="ONSITE">ON-SITE</option>
+                </select>
             </label>
             <label>
               <strong>Sector of Training:</strong>

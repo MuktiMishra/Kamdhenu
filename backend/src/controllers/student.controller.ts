@@ -7,6 +7,7 @@ import {ApiResponse} from "../util/ApiResponse.js";
 import jwt from 'jsonwebtoken'
 import {RequestWithStudent} from "../util/RequestWithStudent";
 import {RequestWithAdmin} from "../util/RequestWithAdmin";
+import { trainingForm } from "./admin.controller.js";
 
 // PM TESTED
 const signUpController = asyncHandler(async (req: Request, res: Response) => {
@@ -102,14 +103,28 @@ const getStudentDataForDashboard = asyncHandler(async (req: RequestWithAdmin, re
     let {tabContext}  = req.body; 
     tabContext = tabContext.toUpperCase(); 
     console.log(tabContext)
- 
+    
 
     try {
-        const students = await prisma.student.findMany({
-            where: {
-                supportType: tabContext
-            }
-        });
+        let students: any = {}; 
+
+        if (tabContext === "TRAINING") {
+            students = await prisma.student.findMany({
+                where: {
+                    supportType: tabContext
+                }, include: {
+                    trainingSupport: true
+                }
+            })
+        } else if (tabContext === "PLACEMENT") {
+            students = await prisma.student.findMany({
+                where: {
+                    supportType: tabContext
+                }, include: {
+                    placementSupport: true
+                }
+            })
+        }
 
         console.log(students);
 
@@ -130,25 +145,43 @@ const getStudentDataForDashboard = asyncHandler(async (req: RequestWithAdmin, re
 
 const getDetailedStudentData = asyncHandler(async (req: Request, res: Response) => {
     const { aadhar } = req.params;
+    const { context } = req.query; 
 
+    let dataToReturn: any = {}; 
     try {
 
-        const studentData = await prisma.student.findUnique({
-            where: {
-                aadharNumber: aadhar
-            }, include: {
-                education: true, 
-                
-            }
-        })
+        switch (context){
+            case 'Training': 
+                dataToReturn = await prisma.student.findUnique({
+                    where: {
+                        aadharNumber: aadhar
+                    }, include: {
+                        education: true, 
+                        trainingSupport: true, 
+                        
+                    }
+                })
+                break; 
+            case 'Placement':
+                dataToReturn = await prisma.student.findUnique({
+                    where: {
+                        aadharNumber: aadhar
+                    }, include: {
+                        education: true, 
+                        placementSupport: true, 
+                        
+                    }
+                })
+                break; 
 
-        console.log(studentData)
+        }
+        
 
-        if (!studentData) {
+        if (!dataToReturn) {
             return res.status(403).json(new ApiError(400, "No student found"))
         }
 
-        return res.status(200).json(new ApiResponse(200, studentData, "Student found"));
+        return res.status(200).json(new ApiResponse(200, dataToReturn, "Student found"));
 
     } catch (err) {
         console.log(err)

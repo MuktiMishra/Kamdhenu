@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import DetailedStudentData from "./DetailedStudentData";
 import axios from 'axios'
 import EditPopup from "./EditPopup";
+import { toast } from "react-toastify";
+import Cookies from 'js-cookie'
 
 interface Candidate {
   id: string;
@@ -39,13 +41,26 @@ const DataTable: React.FC<{tabContext: string}> = ({ tabContext }) => {
     fetchCandidates();
   }, [tabContext]);
 
-  const handleEditSubmit = (updatedData: Candidate) => {
-    setCandidates((prev) =>
-      prev.map((candidate) =>
-        candidate.id === updatedData.id ? updatedData : candidate
-      )
-    );
-    // Optionally send the updated data to the server
+  const handleEditSubmit = async (updatedData: any) => {
+    const authToken = Cookies.get("token"); 
+
+    const endpoint = `${import.meta.env.VITE_APP_API_URL}/admin/${tabContext.toLowerCase()}/update/${updatedData.studentId}`
+    
+    updatedData.authToken = authToken
+    
+
+    try {
+      const response: any = await axios.post(endpoint, updatedData)
+
+      if (response.status === 200 || response.status === 201) {
+        toast.success("Updated Successfully"); 
+      } else{
+        toast.error("Not updated"); 
+      }
+    } catch (err: any) {
+      console.log(err)
+      toast.error("Update failed")
+    }
   };
 
   if (loading) {
@@ -122,13 +137,14 @@ const DataTable: React.FC<{tabContext: string}> = ({ tabContext }) => {
         <DetailedStudentData
           aadhar={selectedStudentId}
           closePopup={() => setSelectedStudentId(null)}
+          tabContext={tabContext}
         />
       )}
 
       {mode === "edit" && selectedStudentId && (
         <EditPopup
           tabContext={tabContext}
-          candidateData={selectedStudentId}
+          candidateData={{studentId: selectedStudentId}}
           onClose={() => setSelectedStudentId(null)}
           onSubmit={handleEditSubmit}
         />

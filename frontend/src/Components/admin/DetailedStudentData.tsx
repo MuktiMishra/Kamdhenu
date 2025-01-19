@@ -25,7 +25,7 @@ interface Candidate {
     division: string;
     date: string;
   };
-  support?: {
+  trainingSupport?: {
     support: string;
     supportType: string;
     course: string;
@@ -44,9 +44,10 @@ interface Candidate {
 interface Props {
   aadhar: string;
   closePopup: () => void;
+  tabContext: string; 
 }
 
-const DetailedStudentData: React.FC<Props> = ({ aadhar, closePopup }) => {
+const DetailedStudentData: React.FC<Props> = ({ aadhar, closePopup, tabContext }) => {
   const [data, setData] = useState<Candidate | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -54,7 +55,7 @@ const DetailedStudentData: React.FC<Props> = ({ aadhar, closePopup }) => {
     // Fetch student data when component mounts
     const fetchStudentData = async () => {
       try {
-        const response: any = await axios.get(`${import.meta.env.VITE_APP_API_URL}/user/detailedstudent/${aadhar}`);
+        const response: any = await axios.get(`${import.meta.env.VITE_APP_API_URL}/user/detailedstudent/${aadhar}?context=${tabContext}`);
       
         setData(response.data.data); 
       } catch (error) {

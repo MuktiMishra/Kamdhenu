@@ -58,5 +58,67 @@ const verifyUser = asyncHandler(
     }
   );
   
+const placementForm = asyncHandler(async (req: RequestWithAdmin, res: Response) => {
+    const { aadharNumber } = req.params; 
+    const admin = req.admin; 
+    const { industry, location, salary, company, profile } = req.body; 
 
-export {signInAdmin, verifyUser}
+    try {
+
+        if (!aadharNumber || !industry || !location || !salary || !company || !profile){
+            return res.status(400).json(new ApiError(400, "Bad Request, Empty data")); 
+        }
+
+        const placementSupport = await prisma.placementStudentSupport.create({
+            data: {
+                industry, location, salary, company, profileJob: profile, studentAadhar: aadharNumber, FilledBy: admin.username
+            }
+        })
+
+        if (!placementSupport){
+            return res.status(403).json(new ApiError(403, "Error in creating placement"));
+        }
+
+        return res.status(200).json(new ApiResponse(200, placementSupport, "Form Created")); 
+
+    } catch (err: any) {
+        console.log("Placement support error: ", err)
+        res.status(500).json(new ApiError(500, "Internal Server Error")); 
+    }
+})
+
+const trainingForm = asyncHandler(async (req: RequestWithAdmin, res: Response) => {
+    const admin = req.admin; 
+    const { aadharNumber } = req.params; 
+    const { mode, sector, role, organization, location } = req.body;
+    let { paid, charges } = req.body; 
+
+    paid = paid === "Paid" ? true : false; 
+    charges = charges.toString(); 
+
+
+    try { 
+        console.log(!charges)
+        if (!mode || !sector || !role || !organization || !location || (!charges && charges !== 0)) {
+            return res.status(400).json(new ApiError(400, "Bad request, empty data"))
+        }
+
+        const trainingForm = await prisma.trainingStudentSupport.create({
+            data: {
+                mode, trainingSector: sector, role, organization, location, paid, fees: charges, FilledBy: admin.username, studentAadhar: aadharNumber  
+            }
+        })
+
+        if (!trainingForm){
+            return res.status(403).json(new ApiError(403, "Error in creating training"));
+        }
+        
+        return res.status(200).json(new ApiResponse(200, trainingForm, "Form Created")); 
+
+    } catch (err: any) {
+        console.log(err)
+        return res.status(500).json(new ApiError(500, "Internal Server Error")); 
+    }
+})
+
+export {signInAdmin, verifyUser, placementForm, trainingForm}
