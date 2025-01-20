@@ -4,6 +4,7 @@ import axios from 'axios'
 import EditPopup from "./EditPopup";
 import { toast } from "react-toastify";
 import Cookies from 'js-cookie'
+import DetailedSpecificData from "./DetailedSpecificData";
 
 interface Candidate {
   id: string;
@@ -13,11 +14,14 @@ interface Candidate {
   support: {
     supportType: string
   }
+  trainingSupport? : any; 
+  isDataFilled: boolean;
 }
 
 const DataTable: React.FC<{tabContext: string}> = ({ tabContext }) => {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [selectedStudentId, setSelectedStudentId] = useState<string | null>(null);
+  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null); 
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [mode, setMode] = useState<string>("")
@@ -87,7 +91,7 @@ const DataTable: React.FC<{tabContext: string}> = ({ tabContext }) => {
               Mobile Number
             </th>
             <th style={{ border: "1px solid #ddd", padding: "8px" }}>
-              Support Type
+              Support Data
             </th>
             <th style={{ border: "1px solid #ddd", padding: "8px" }}>Actions</th>
           </tr>
@@ -105,7 +109,7 @@ const DataTable: React.FC<{tabContext: string}> = ({ tabContext }) => {
                 {candidate.phoneNo}
               </td>
               <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                {candidate.support?.supportType || ""}
+                {candidate.isDataFilled ? <button onClick={() => {setSelectedCandidate(candidate); setMode("specificView")}}>View</button> : <p>Data not filled</p>}
               </td>
               <td style={{ border: "1px solid #ddd", padding: "8px" }}>
                 <button
@@ -148,6 +152,10 @@ const DataTable: React.FC<{tabContext: string}> = ({ tabContext }) => {
           onClose={() => setSelectedStudentId(null)}
           onSubmit={handleEditSubmit}
         />
+      )}
+
+      {mode === "specificView" && selectedCandidate && (
+        <DetailedSpecificData tabContext={tabContext} trainingSupport={selectedCandidate.trainingSupport} closePopup={() => setSelectedCandidate(null)}/>
       )}
     </div>
   );

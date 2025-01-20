@@ -115,7 +115,9 @@ const getStudentDataForDashboard = asyncHandler(async (req: RequestWithAdmin, re
                 }, include: {
                     trainingSupport: true
                 }
-            })
+            }); 
+
+            
         } else if (tabContext === "PLACEMENT") {
             students = await prisma.student.findMany({
                 where: {
@@ -125,15 +127,30 @@ const getStudentDataForDashboard = asyncHandler(async (req: RequestWithAdmin, re
                 }
             })
         }
+        let a: any = {}
+        console.log(students == a)
+        console.log(students)
+        if (students === a){
+            return res.status(403).json(new ApiError(403, "No students found, error"));
+        }
 
-        console.log(students);
-
+        if (Array.isArray(students)) {
+            students = students.map((item: any) => {
+                item.isDataFilled = !!item.trainingSupport?.studentAadhar;
+                return item;
+            });
+        } else {
+            return res.status(201).json(new ApiResponse(201, [{}], "No students found"))
+        }
         if (students.length === 0){
             return res.status(201).json(new ApiResponse(201, [{}], "No students found"))
         }
+
         if (!students) {
             return res.status(403).json(new ApiError(403, "No students found, error"));
         }
+
+        
 
         return res.status(200).json(new ApiResponse(200, students, "Students fetched successfully"));
     } catch (err: any) {
