@@ -107,7 +107,7 @@ const trainingForm = asyncHandler(async (req: RequestWithAdmin, res: Response) =
             data: {
                 mode, trainingSector: sector, role, organization, location, paid, fees: charges, FilledBy: admin.username, studentAadhar: aadharNumber  
             }
-        })
+        });
 
         if (!trainingForm){
             return res.status(403).json(new ApiError(403, "Error in creating training"));
@@ -121,4 +121,44 @@ const trainingForm = asyncHandler(async (req: RequestWithAdmin, res: Response) =
     }
 })
 
-export {signInAdmin, verifyUser, placementForm, trainingForm}
+const addStaff = asyncHandler(async (req: RequestWithAdmin, res: Response) => {
+    const { username, password } = req.body.formData; 
+
+    try{ 
+
+        if (!username || !password) {
+            return res.status(400).json(new ApiError(400, "Bad Request, invalid data")); 
+        }
+
+        const alreadyExistingStaff = await prisma.admin.findUnique({
+            where: {
+                username: username
+            }
+        })
+
+        if (alreadyExistingStaff) {
+            return res.status(403).json(new ApiError(403, "Staff already exists with the same username")); 
+        }
+
+        const addStaff = await prisma.admin.create({
+            data: {
+                username, password, role: "STAFF"
+            }
+        }); 
+
+        if (!addStaff) {
+            return res.status(403).json(new ApiError(403, "Error in adding staff")); 
+        }
+
+        const dataToSend = {
+            username: addStaff.username, 
+            role: addStaff.role
+        }
+        return res.status(200).json(new ApiResponse(200, dataToSend, "Staff added successfully"))
+
+    } catch (err) {
+
+    }
+})
+
+export {signInAdmin, verifyUser, placementForm, trainingForm, addStaff}

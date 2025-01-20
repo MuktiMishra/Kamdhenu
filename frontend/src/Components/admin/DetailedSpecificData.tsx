@@ -14,14 +14,34 @@ interface detailedSpecficDataInterface {
         role: string,
         FilledBy: string
     }; 
+    placementSupport?: {
+        id: string  
+        studentAadhar: string,
+        industry: string,
+        location: string,
+        salary: string,
+        company: string,
+        profileJob: string,
+        paid: boolean,
+        FilledBy: string ,
+    }
     closePopup: () => void; 
         
 }
 
-const DetailedSpecificData: React.FC<detailedSpecficDataInterface> = ({tabContext, trainingSupport, closePopup }) => {
+const DetailedSpecificData: React.FC<detailedSpecficDataInterface> = ({tabContext, trainingSupport, placementSupport,closePopup }) => {
     console.log("came here, training: ", tabContext, " support: ", trainingSupport)
 
-    if (trainingSupport === undefined) {
+    let supportData : any = {}; 
+
+    if (tabContext === "Training") {
+        supportData = trainingSupport; 
+    } else if (tabContext === "Placement") {
+        supportData = placementSupport; 
+    }
+
+
+    if (!supportData) {
         return (
             <>
                 Sorry but data is empty
@@ -38,16 +58,11 @@ const DetailedSpecificData: React.FC<detailedSpecficDataInterface> = ({tabContex
             </button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-            <p>
-                <strong>id: </strong> {trainingSupport.id}
-            </p>
-            <p>
-                <strong>studentAadhar: </strong> {trainingSupport.studentAadhar}
-            </p>
-            <p>
-                <strong>paid: </strong> {trainingSupport.paid}
-            </p>
+          {Object.entries(supportData).map(([key, value]) => (
+                <p key={key}>
+                <strong>{key.replace(/([A-Z])/g, " $1")}:</strong> {value?.toString() || "N/A"}
+                </p>
+            ))}
         </div>
       </div>
       </div>

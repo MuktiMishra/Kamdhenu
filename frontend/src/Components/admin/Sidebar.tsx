@@ -45,6 +45,11 @@ const Sidebar: React.FC<SidebarProps> = ({ onItemClick }) => {
             <FaBriefcase size={20} />
             <span>Placement</span>
           </li>
+          <li className="flex items-center gap-3 hover:bg-blue-700 rounded-md p-2 cursor-pointer"
+          onClick={() => onItemClick(4)}>
+            <FaBriefcase size={20} />
+            <span>Add New Staff</span>
+          </li>
         </ul>
       </div>
 

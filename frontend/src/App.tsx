@@ -13,6 +13,7 @@ import { ToastContainer } from 'react-toastify';
 import AdminLogin from './Pages/admin/AdminLogin'
 import AdminDashboard from './Pages/admin/AdminDashboard'
 import ProtectedRoute from './Components/Authentication/ProtectedRoute'
+import AddNewStaff from './Components/admin/AddNewStaff'
 
 function AppContent() {
   const location = useLocation()
@@ -39,6 +40,7 @@ function AppContent() {
         
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+        <Route path="/admin/addStaff" element={<ProtectedRoute><AddNewStaff /></ProtectedRoute>}/>
       </Routes>
       <ToastContainer />
 
