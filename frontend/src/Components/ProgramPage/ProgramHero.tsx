@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 interface HeroProps {
   children?: React.ReactNode;
@@ -9,6 +10,7 @@ const words = ["Distant Education", "Training Support", "Placement Support"];
 
 const ProgramHero: React.FC<HeroProps> = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -44,7 +46,7 @@ const ProgramHero: React.FC<HeroProps> = () => {
           <div className="text-3xl lg:text-6xl font-bold text-center lg:text-left text-black text-nowrap">
             right now!
           </div>
-          <button className="h-10 w-32 bg-[#B0C4DE] rounded-xl mt-4 text-bold hover:bg-blue-500 hover:text-white text-lg">
+          <button onClick={() => navigate("/signup")} className="h-10 w-32 bg-[#B0C4DE] rounded-xl mt-4 text-bold hover:bg-blue-500 hover:text-white text-lg">
             Get Started
           </button>
         </div>

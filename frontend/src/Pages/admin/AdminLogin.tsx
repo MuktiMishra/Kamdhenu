@@ -127,11 +127,11 @@ const AdminLogin: React.FC = () => {
         </div>
 
      
-        <div className="flex md:hidden items-center justify-center mt-5">
+        <div className="flex justify-center items-center w-full lg:hidden md:hidden mt-5">
           <img
-            src="admin.png"
+            src={AdminPNG}
             alt="Admin Illustration"
-            className="w-[50%]"
+            className="w-[90%] h-full"
           />
         </div>
       </div>

@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 const Details = () => {
+    const navigate = useNavigate(); 
+
     return (
       <div className="p-2 md:p-5 flex flex-col items-center">
         {/* Distant Education Section */}
@@ -23,7 +27,7 @@ const Details = () => {
               <div>
                 Our programs are designed to make education accessible, affordable, and achievable for all.
               </div>
-              <button className="h-10 w-32 bg-blue-400 rounded-xl mt-6 text-white font-bold hover:bg-blue-500">
+              <button onClick={() => navigate("/signup")} className="h-10 w-32 bg-blue-400 rounded-xl mt-6 text-white font-bold hover:bg-blue-500">
                 Apply Now
               </button>
             </div>
@@ -45,7 +49,7 @@ const Details = () => {
                 <li>Hands-On Learning: Practical sessions and projects to build expertise.</li>
                 <li>Workshops & Webinars: Delivered by industry leaders.</li>
               </ul>
-              <button className="h-10 w-32 bg-blue-400 rounded-xl mt-6 text-white font-bold hover:bg-blue-500">
+              <button onClick={() => navigate("/signup")} className="h-10 w-32 bg-blue-400 rounded-xl mt-6 text-white font-bold hover:bg-blue-500">
                 Apply Now
               </button>
             </div>
@@ -67,7 +71,7 @@ const Details = () => {
                 <li>Campus placement drives and one-on-one guidance.</li>
                 <li>Regular job alerts and career counseling sessions.</li>
               </ul>
-              <button className="h-10 w-32 bg-blue-400 rounded-xl mt-6 text-white font-bold hover:bg-blue-500">
+              <button onClick={() => navigate("/signup")} className="h-10 w-32 bg-blue-400 rounded-xl mt-6 text-white font-bold hover:bg-blue-500">
                 Apply Now
               </button>
             </div>

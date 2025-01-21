@@ -60,7 +60,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onItemClick }) => {
           className="absolute top-4 left-4 text-blue-800 md:hidden z-50"
           onClick={toggleSidebar}
         >
-          <FaBars size={24} />
+          {!isOpen ? <FaBars size={24} />: ""}
         </button>
 
         

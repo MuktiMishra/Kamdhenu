@@ -61,7 +61,7 @@ const AddNewStaff = () => {
   return (
     <div className="w-full h-full flex flex-col justify-center items-center">
         <h1 className="text-2xl font-bold mb-10">Add New Staff</h1>
-        <div className="w-[30%] h-[40%] rounded-lg">
+        <div className="w-[90%] md:w-[30%] lg:w-[30%] h-[40%] flex flex-col justify-start rounded-lg">
             <div className="flex flex-col">
                 <label htmlFor="username" className="text-lg font-bold">New Username</label>
                 <input onChange={handleChange} name='username' id="username" className="bg-gray-200 rounded-md w-80 h-10 p-2"/>
