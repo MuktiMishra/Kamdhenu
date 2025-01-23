@@ -1,5 +1,5 @@
 import express from 'express'
-import {addStaff, getStaffList, placementForm, signInAdmin, trainingForm, verifyUser} from "../controllers/admin.controller.js";
+import {addStaff, deleteAdmin, getStaffList, placementForm, signInAdmin, trainingForm, verifyUser} from "../controllers/admin.controller.js";
 import adminAuthMiddleware from '../middlewares/AdminAuthMiddleware.js';
 import adminRoleMiddleware from '../middlewares/AdminRoleMiddleware.js';
 
@@ -11,5 +11,6 @@ adminRouter.route('/placementForm/:aadharNumber').post(adminAuthMiddleware, admi
 adminRouter.route('/training/update/:aadharNumber').post(adminAuthMiddleware, adminRoleMiddleware('STAFF'), trainingForm)
 adminRouter.route('/addStaff').post(adminAuthMiddleware, adminRoleMiddleware("MASTER"), addStaff); 
 adminRouter.route('/getStaffList').post(adminAuthMiddleware, adminRoleMiddleware("MASTER"), getStaffList); 
+adminRouter.route('/deleteAdmin').post(adminAuthMiddleware, adminRoleMiddleware("MASTER"), deleteAdmin); 
 
 export default adminRouter;

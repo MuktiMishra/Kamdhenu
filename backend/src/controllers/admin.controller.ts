@@ -184,4 +184,30 @@ const getStaffList = asyncHandler(async (req: RequestWithAdmin, res: Response) =
     }
 })
 
-export {signInAdmin, verifyUser, placementForm, trainingForm, addStaff, getStaffList}
+const deleteAdmin = asyncHandler(async (req: RequestWithAdmin, res: Response) => {
+    const {username} = req.body; 
+    console.log("username: ", username)
+
+    try {
+
+        if (!username) {
+            res.status(400).json(new ApiError(400, "No username recieved")) 
+        }
+
+        await prisma.admin.delete({
+            where: {
+                username
+            }
+        })
+
+        return res.status(200).json(new ApiResponse(200, {}, "Admin removed")); 
+
+
+
+    } catch (err: any) {
+        console.log(err); 
+        res.status(500).json(new ApiError(500, "Internal Server Error"))
+    }
+})
+
+export {signInAdmin, verifyUser, placementForm, trainingForm, addStaff, getStaffList, deleteAdmin}
