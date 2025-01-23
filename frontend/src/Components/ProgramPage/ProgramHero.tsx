@@ -6,7 +6,7 @@ interface HeroProps {
   children?: React.ReactNode;
 }
 
-const words = ["Distant Education", "Training Support", "Placement Support"];
+const words = ["Distance Education", "Training Support", "Placement Support"];
 
 const ProgramHero: React.FC<HeroProps> = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

@@ -108,25 +108,26 @@ const getStudentDataForDashboard = asyncHandler(async (req: RequestWithAdmin, re
     try {
         let students: any = {}; 
 
-        if (tabContext === "TRAINING") {
-            students = await prisma.student.findMany({
-                where: {
-                    supportType: tabContext
-                }, include: {
-                    trainingSupport: true
-                }
-            }); 
+        // if (tabContext === "TRAINING") {
+        //     students = await prisma.student.findMany({
+        //         where: {
+        //             supportType: tabContext
+        //         }, include: {
+        //             trainingSupport: true
+        //         }
+        //     }); 
 
             
-        } else if (tabContext === "PLACEMENT") {
-            students = await prisma.student.findMany({
-                where: {
-                    supportType: tabContext
-                }, include: {
-                    placementSupport: true
-                }
-            })
-        }
+        // } else if (tabContext === "PLACEMENT") {
+        //     students = await prisma.student.findMany({
+        //         where: {
+        //             supportType: tabContext
+        //         }, include: {
+        //             placementSupport: true
+        //         }
+        //     })
+        // }
+        students = await prisma.student.findMany({}); 
         let a: any = {}
         console.log(students == a)
         console.log(students)

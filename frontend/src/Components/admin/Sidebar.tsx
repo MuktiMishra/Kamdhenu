@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaBars, FaTimes, FaGraduationCap, FaChalkboardTeacher, FaBriefcase } from "react-icons/fa";
+import { FaBars, FaTimes, FaGraduationCap, FaBriefcase } from "react-icons/fa";
 
 interface SidebarProps {
   onItemClick: (id: number) => void; 
@@ -31,24 +31,19 @@ const Sidebar: React.FC<SidebarProps> = ({ onItemClick }) => {
         </div>
         <ul className="flex flex-col gap-4 mt-5 px-4">
           <li className="flex items-center gap-3 hover:bg-blue-700 rounded-md p-2 cursor-pointer"
-          onClick={() => onItemClick(1)}> 
+          onClick={() => {onItemClick(1); setIsOpen(false)}}> 
             <FaGraduationCap size={20} />
-            <span>Education</span>
+            <span>Student List</span>
           </li>
           <li className="flex items-center gap-3 hover:bg-blue-700 rounded-md p-2 cursor-pointer"
-          onClick={() => onItemClick(2)}>
-            <FaChalkboardTeacher size={20} />
-            <span>Training</span>
-          </li>
-          <li className="flex items-center gap-3 hover:bg-blue-700 rounded-md p-2 cursor-pointer"
-          onClick={() => onItemClick(3)}>
-            <FaBriefcase size={20} />
-            <span>Placement</span>
-          </li>
-          <li className="flex items-center gap-3 hover:bg-blue-700 rounded-md p-2 cursor-pointer"
-          onClick={() => onItemClick(4)}>
+          onClick={() => {onItemClick(2); setIsOpen(false)}}>
             <FaBriefcase size={20} />
             <span>Add New Staff</span>
+          </li>
+          <li className="flex items-center gap-3 hover:bg-blue-700 rounded-md p-2 cursor-pointer"
+          onClick={() => {onItemClick(3); setIsOpen(false)}}>
+            <FaBriefcase size={20} />
+            <span>See Admin List</span>
           </li>
         </ul>
       </div>

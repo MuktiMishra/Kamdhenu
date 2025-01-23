@@ -9,7 +9,7 @@ const Details = () => {
         <a href="#education" className="w-full max-w-4xl">
           <div className="flex flex-col text-black p-4 md:p-10 mb-10 md:mb-20 mx-auto bg-slate-100 rounded-lg shadow-lg">
             <div className="text-center text-xl md:text-3xl font-bold m-5">
-              Distant Education
+              Distance Education Support
             </div>
             <div className="text-start text-sm md:text-xl font-normal ml-4 md:ml-8">
               <div>

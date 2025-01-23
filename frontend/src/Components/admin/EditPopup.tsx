@@ -16,6 +16,7 @@ const EditPopup: React.FC<EditPopupProps> = ({
 }) => {
   const [formData, setFormData] = useState(candidateData);
 
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -42,9 +43,10 @@ const EditPopup: React.FC<EditPopupProps> = ({
   };
 
   const renderFields = () => {
-    switch (tabContext) {
-      case "Training":
+   
+    
         return (
+          <>
           <>
             <label>
               <strong>Regular/On-field Training:</strong>
@@ -125,9 +127,7 @@ const EditPopup: React.FC<EditPopupProps> = ({
               </label>
             )}
           </>
-        );
-      case "Placement":
-        return (
+      
           <>
             <label>
               <strong>Industry/Field:</strong>
@@ -180,9 +180,9 @@ const EditPopup: React.FC<EditPopupProps> = ({
               />
             </label>
           </>
-        );
-      case "Education":
-        return (
+
+  
+  
           <>
             <label>
               <strong>Further Qualification:</strong>
@@ -219,10 +219,9 @@ const EditPopup: React.FC<EditPopupProps> = ({
               </label>
             )}
           </>
-        );
-      default:
-        return null;
-    }
+          </>
+        )
+     
   };
 
   return (

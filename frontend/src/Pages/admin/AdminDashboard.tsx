@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "../../Components/admin/Sidebar";
 import DataTable from "../../Components/admin/DataTable";
 import AddNewStaff from "../../Components/admin/AddNewStaff";
+import StaffList from "../../Components/admin/StaffList";
 
 const AdminDashboard: React.FC = () => {
   
@@ -13,11 +14,9 @@ const AdminDashboard: React.FC = () => {
     switch (activeComponent) {
       case 1:
         return <DataTable tabContext="Education" />; // education
-      case 2:
-        return <DataTable tabContext="Training" />; // training
       case 3:
-        return <DataTable tabContext="Placement" />; // placement
-      case 4: 
+        return <StaffList />; // placement
+      case 2: 
         return <AddNewStaff />
       default:
         return <DataTable tabContext="default" />;

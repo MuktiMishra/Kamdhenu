@@ -12,7 +12,7 @@ const ServicesSection : React.FC = () => {
         <div className='grid grid-rows-3 gap-3 md:gap-7'>
             <div className='flex justify-center items-center w-screen gap-16'>
               <div className='flex-col w-[50%] justify-start ml-3'>
-              <div className="text-2xl md:text-4xl font-extrabold text-[#000000] flex-nowrap mb-8">Distant Education</div>
+              <div className="text-2xl md:text-4xl font-extrabold text-[#000000] flex-nowrap mb-8">Distance Education</div>
                 <div className='text-sm md:text-xl text-[#000000]'>
                   Providing the foundation of knowledge and learning, 
                   the education services under Kamdhenu aim to prepare 

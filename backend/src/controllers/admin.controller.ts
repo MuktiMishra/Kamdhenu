@@ -161,4 +161,27 @@ const addStaff = asyncHandler(async (req: RequestWithAdmin, res: Response) => {
     }
 })
 
-export {signInAdmin, verifyUser, placementForm, trainingForm, addStaff}
+const getStaffList = asyncHandler(async (req: RequestWithAdmin, res: Response) => {
+
+    const admin = req.admin; 
+
+    try {
+        const staffList = await prisma.admin.findMany({
+            // where: {
+            //     NOT: {username: admin.username, role: "MASTER"}, 
+            // }
+        }); 
+
+        if (!staffList || !Array.isArray(staffList)){
+            return res.status(201).json(new ApiError(201, "No admins found"))
+        }
+
+        return res.status(200).json(new ApiResponse(200, staffList, "Staff list found"))
+
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(new ApiError(500, "Internal Server Error")); 
+    }
+})
+
+export {signInAdmin, verifyUser, placementForm, trainingForm, addStaff, getStaffList}
