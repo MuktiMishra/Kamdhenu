@@ -85,6 +85,11 @@ const DataTable: React.FC<{tabContext: string}> = ({ tabContext }) => {
     return <p className="text-red-600">Error: {error}</p>;
   }
 
+  if (candidates.length === 0) {
+    console.log(candidates)
+    return <p>There is no data to display</p>
+  }
+
   return (
     <div style={{ padding: "20px" }}>
       <h1>Admin Panel</h1>

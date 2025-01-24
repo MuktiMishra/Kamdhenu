@@ -16,7 +16,7 @@ const ProtectedRoute = ({children}: {children: React.ReactNode}) => {
 
             if (!authToken) {
                 console.log('No auth token found');
-                navigate('/');
+                navigate('/admin/login');
                 return;
             }
 

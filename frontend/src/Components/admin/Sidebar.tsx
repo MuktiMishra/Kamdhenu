@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { FaBars, FaTimes, FaGraduationCap, FaBriefcase } from "react-icons/fa";
+import { FaAnglesLeft } from "react-icons/fa6";
+import Cookies from 'js-cookie'
+import { useNavigate } from "react-router-dom";
 
 interface SidebarProps {
   onItemClick: (id: number) => void; 
@@ -7,10 +10,18 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ onItemClick }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate(); 
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+
+  const handleLogout = () => {
+    Cookies.remove("token")
+    Cookies.remove("role")
+    navigate("/admin/login")
+
+  }
 
   return (
     <div className="flex h-screen">
@@ -44,6 +55,11 @@ const Sidebar: React.FC<SidebarProps> = ({ onItemClick }) => {
           onClick={() => {onItemClick(3); setIsOpen(false)}}>
             <FaBriefcase size={20} />
             <span>See Admin List</span>
+          </li>
+          <li className="flex items-center gap-3 hover:bg-blue-700 rounded-md p-2 cursor-pointer"
+          onClick={handleLogout}>
+            <FaAnglesLeft size={20}/>
+            <span>Logout</span>
           </li>
         </ul>
       </div>
