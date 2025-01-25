@@ -210,4 +210,103 @@ const deleteAdmin = asyncHandler(async (req: RequestWithAdmin, res: Response) =>
     }
 })
 
-export {signInAdmin, verifyUser, placementForm, trainingForm, addStaff, getStaffList, deleteAdmin}
+const educationSupportAdmin = asyncHandler(async (req: RequestWithAdmin, res:Response) => {
+    const admin = req.admin; 
+    
+    const {aadhar, furtherQualification} = req.body; 
+
+    let {paid, fees} = req.body
+
+    try {
+
+        if (!aadhar || !furtherQualification || !paid || !fees) {
+            return res.status(400).json(new ApiError(400, "Bad request")); 
+        }
+
+        if (paid === "paid") {paid = true}
+        else {paid = false; fees = 0}
+
+        const createSupportEducation = await prisma.educationStudentSupport.create({
+            data: {
+                studentAadhar: aadhar, furtherQualification, paid, fees, FilledBy: admin.username
+            }
+        })
+
+        if (!createSupportEducation) {
+            return res.status(403).json(new ApiError(403, "Not able to create the support")); 
+        }
+
+        return res.status(200).json(new ApiResponse(200, createSupportEducation, "Student Education support created successfully")); 
+
+    } catch (err: any) {
+        console.log("Error in admin education: ", err)
+        return res.status(500).json(new ApiError(500, "Internal server error"))
+    }   
+}) 
+
+const trainingSupportAdmin = asyncHandler(async (req: RequestWithAdmin, res: Response) => {
+    const admin = req.admin; 
+
+    const { trainingSector, location, mode, role, organization, aadhar } = req.body; 
+    let {paid, fees} = req.body; 
+
+    try { 
+
+        if (!trainingSector || !location || !mode || !role || !organization || !aadhar) {
+            return res.status(400).json(new ApiError(400, "Bad data, empty"))
+        }
+
+        if (paid === "paid") paid = true
+        else {paid = false; fees = 0}
+
+        const createSupportTraining = await prisma.trainingStudentSupport.create({
+            data: {
+                studentAadhar: aadhar, location, organization, trainingSector, mode, role, fees, paid, FilledBy: admin.username
+            }
+        })
+
+        if (!createSupportTraining) {
+            return res.status(403).json(new ApiError(403, "Error in creating support"))
+        }
+
+        return res.status(200).json(new ApiResponse(200, createSupportTraining, "Training support created successfully"))
+
+    } catch (err: any) {
+        console.log("Training support error: ", err)
+        return res.status(500).json(new ApiError(500, "Internal server error"))
+    }
+})
+
+const placementSupportAdmin = asyncHandler(async (req: RequestWithAdmin, res: Response) => {
+    const admin = req.admin; 
+    const { location, profileJob, industry, salary, company, aadhar } = req.body; 
+    let {paid, fees} = req.body; 
+
+    try {
+
+        if (!location || !profileJob || !industry || !salary || !company || !aadhar) {
+            return res.status(400).json(new ApiError(400, "Bad data, empty data")); 
+        }
+
+        if (paid === "paid") paid = true
+        else { paid = false; fees = 0 }
+
+        const createPlacementSupport = await prisma.placementStudentSupport.create({
+            data: {
+                profileJob, location, industry, salary, company, studentAadhar: aadhar, FilledBy: admin.username
+            }
+        })
+
+        if (!createPlacementSupport) {
+            return res.status(403).json(new ApiError(403, "Placement support creation error"))
+        }
+
+        return res.status(200).json(new ApiResponse(200, createPlacementSupport, "Placement Support created successfully")); 
+
+    } catch (err: any) {
+        console.log("Placement support error: ", err)
+        return res.status(500).json(new ApiError(500, "Internal Server error")); 
+    }
+})
+
+export {signInAdmin, verifyUser, placementForm, trainingForm, addStaff, getStaffList, deleteAdmin, educationSupportAdmin, trainingSupportAdmin, placementSupportAdmin}

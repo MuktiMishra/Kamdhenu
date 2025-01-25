@@ -25,6 +25,7 @@ model Admin {
   role          Role
   placementData PlacementStudentSupport?
   trainingData  TrainingStudentSupport?
+  educationData EducationStudentSupport?
 }
 
 model Student {
@@ -49,6 +50,7 @@ model Student {
   education             StudentEducation?
   trainingSupport       TrainingStudentSupport?
   placementSupport      PlacementStudentSupport?
+  educationSupport      EducationStudentSupport?
   regTime               DateTime                 @default(now())
 }
 
@@ -84,10 +86,22 @@ model PlacementStudentSupport {
   student       Student @relation(fields: [studentAadhar], references: [aadharNumber])
   industry      String
   location      String
+  fees          String  @default("")
   salary        String
   company       String
   profileJob    String
   paid          Boolean @default(false)
   FilledBy      String  @unique
   Admin         Admin   @relation(fields: [FilledBy], references: [username])
+}
+
+model EducationStudentSupport {
+  id                   String  @id @default(cuid())
+  studentAadhar        String  @unique
+  student              Student @relation(fields: [studentAadhar], references: [aadharNumber])
+  paid                 Boolean @default(false)
+  furtherQualification String
+  fees                 String  @default("")
+  FilledBy             String  @unique
+  Admin                Admin   @relation(fields: [FilledBy], references: [username])
 }

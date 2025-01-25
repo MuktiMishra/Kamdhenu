@@ -3,6 +3,7 @@ import {
     getDetailedStudentData,
     getStudentDataForDashboard,
     signUpController,
+    userLogin,
     verifyToken
 } from "../controllers/student.controller.js";
 import {studentAuthMiddleware} from "../middlewares/studentAuth.middleware.js";
@@ -18,5 +19,6 @@ userRouter.route('/verify').post(studentAuthMiddleware, verifyToken);
 userRouter.route('/getStudents').post(getStudentDataForDashboard);
 userRouter.route('/test').post(adminAuthMiddleware, adminRoleMiddleware("MASTER"));
 userRouter.route('/detailedStudent/:aadhar').get(getDetailedStudentData);
+userRouter.route('/login').post(userLogin); 
 
 export default userRouter;

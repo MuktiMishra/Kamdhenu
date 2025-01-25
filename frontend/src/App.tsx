@@ -14,6 +14,8 @@ import AdminLogin from './Pages/admin/AdminLogin'
 import AdminDashboard from './Pages/admin/AdminDashboard'
 import ProtectedRoute from './Components/Authentication/ProtectedRoute'
 import AddNewStaff from './Components/admin/AddNewStaff'
+import StudentDashboard from './Pages/StudentDashboard'
+import EditPopup from './Components/admin/EditPopup'
 
 function AppContent() {
   const location = useLocation()
@@ -36,8 +38,10 @@ function AppContent() {
         <Route path="/programs" element={<Programs />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/testimonials" element={<Testimonials />} />
+        <Route path='/dashboard' element={<StudentDashboard />}/>
+       
 
-        
+        <Route path='/admin/editSupportData/:aadhar' element={<EditPopup />}/>
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
         <Route path="/admin/addStaff" element={<ProtectedRoute><AddNewStaff /></ProtectedRoute>}/>

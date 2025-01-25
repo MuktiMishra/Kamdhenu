@@ -1,12 +1,15 @@
 import React , {useState} from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios'
+import { toast } from 'react-toastify';
+import Cookies from 'js-cookie'; 
 
 interface SignupProps{
     children?: React.ReactNode; 
 }
 
 const Login : React.FC<SignupProps>= () => {
-    
+        const navigate = useNavigate(); 
         const [formData , setFormData] = useState({
           aadharNumber: '',
           password: ''
@@ -20,6 +23,21 @@ const Login : React.FC<SignupProps>= () => {
       
         const handleSubmit = async (e: React.FormEvent) => {
           e.preventDefault();
+          console.log("came in login")
+
+          try {
+            const { aadharNumber, password } = formData; 
+            const response: any = await axios.post(`${import.meta.env.VITE_APP_API_URL}/user/login`, {aadharNumber: aadharNumber, phoneNo: password})
+
+            if (response.status === 200 || response.status === 201) {
+              toast.success("Login successful")
+              Cookies.set("userToken", response.data.data.token)
+              navigate("/dashboard")
+            }
+          } catch (err: any) {
+            console.log(err)
+            toast.error(err.response.data.message || "Login unsuccessful")
+          }
         };
       
   return (
@@ -45,7 +63,7 @@ const Login : React.FC<SignupProps>= () => {
 
                 <button 
                 className='w-40 h-8 font-semibold text-[#0000FF] hover:text-white bg-[#DFE4FF] mt-5 rounded-md hover:bg-blue-700'
-                onSubmit={handleSubmit}>
+                onClick={handleSubmit}>
                 Login
                 </button>
                 

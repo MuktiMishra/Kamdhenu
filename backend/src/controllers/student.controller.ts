@@ -127,7 +127,13 @@ const getStudentDataForDashboard = asyncHandler(async (req: RequestWithAdmin, re
         //         }
         //     })
         // }
-        students = await prisma.student.findMany({}); 
+        students = await prisma.student.findMany({
+            include: {
+                placementSupport: true, 
+                educationSupport: true,
+                trainingSupport: true
+            }
+        }); 
         let a: any = {}
         console.log(students == a)
         console.log(students)
@@ -168,31 +174,13 @@ const getDetailedStudentData = asyncHandler(async (req: Request, res: Response) 
     let dataToReturn: any = {}; 
     try {
 
-        switch (context){
-            case 'Training': 
-                dataToReturn = await prisma.student.findUnique({
-                    where: {
-                        aadharNumber: aadhar
-                    }, include: {
-                        education: true, 
-                        trainingSupport: true, 
-                        
-                    }
-                })
-                break; 
-            case 'Placement':
-                dataToReturn = await prisma.student.findUnique({
-                    where: {
-                        aadharNumber: aadhar
-                    }, include: {
-                        education: true, 
-                        placementSupport: true, 
-                        
-                    }
-                })
-                break; 
-
+       dataToReturn = await prisma.student.findUnique({
+        where: {
+            aadharNumber: aadhar
+        }, include: {
+            education: true, 
         }
+    })
         
 
         if (!dataToReturn) {
@@ -203,8 +191,44 @@ const getDetailedStudentData = asyncHandler(async (req: Request, res: Response) 
 
     } catch (err) {
         console.log(err)
-        res.status(500).json(new ApiError(500, "Internal server error"))
+        return res.status(500).json(new ApiError(500, "Internal server error"))
     }
 })
 
-export { signUpController, verifyToken, getStudentDataForDashboard, getDetailedStudentData }
+const userLogin = asyncHandler(async (req: Request, res: Response) => {
+    const { aadharNumber, phoneNo } = req.body; 
+
+    console.log(aadharNumber, phoneNo)
+
+    try {
+        if (!aadharNumber || !phoneNo) {
+            return res.status(400).json(new ApiError(400, "Error in data"))
+        }
+
+        const student = await prisma.student.findUnique({
+            where: {
+                aadharNumber 
+            }
+        })
+
+        console.log(student); 
+        if (!student) {
+            return res.status(403).json(new ApiError(403, "Student doesn't exist")); 
+        }
+
+        if (student.phoneNo !== phoneNo) {
+            return res.status(403).json(new ApiError(403, "Wrong password"))
+        }
+
+        const token = jwt.sign({aadharNumber, phoneNo}, process.env.AUTH_TOKEN_PASS!); 
+
+        return res.status(200).json(new ApiResponse(200, token, "Student logged in successfully")); 
+
+    } catch (err) {
+
+        console.log("login error: ", err)
+        return res.status(500).json(new ApiError(500, "Internal Server error"));
+    }
+})
+
+export { signUpController, verifyToken, getStudentDataForDashboard, getDetailedStudentData, userLogin }
