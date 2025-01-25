@@ -11,6 +11,7 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ onItemClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate(); 
+  const role = Cookies.get("role")
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -46,7 +47,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onItemClick }) => {
             <FaGraduationCap size={20} />
             <span>Student List</span>
           </li>
-          <li className="flex items-center gap-3 hover:bg-blue-700 rounded-md p-2 cursor-pointer"
+          {role === "MASTER" && <> <li className="flex items-center gap-3 hover:bg-blue-700 rounded-md p-2 cursor-pointer"
           onClick={() => {onItemClick(2); setIsOpen(false)}}>
             <FaBriefcase size={20} />
             <span>Add New Staff</span>
@@ -55,7 +56,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onItemClick }) => {
           onClick={() => {onItemClick(3); setIsOpen(false)}}>
             <FaBriefcase size={20} />
             <span>See Admin List</span>
-          </li>
+          </li></>}
           <li className="flex items-center gap-3 hover:bg-blue-700 rounded-md p-2 cursor-pointer"
           onClick={handleLogout}>
             <FaAnglesLeft size={20}/>
