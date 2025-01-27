@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from 'axios'
 import { toast } from 'react-toastify';
+import { Checkbox } from "@/Components/ui/checkbox";
 
 
 const steps = ["Personal Information", "Education Details", "Support Details"];
@@ -38,7 +39,7 @@ export default function Signup() {
             date: "",
         },
         supportInfo: {
-            supportType: "",
+            supportType: [],
         },
     });
 
@@ -55,6 +56,8 @@ export default function Signup() {
     const handlePrevious = () => {
         setCurrentStep((prev) => prev - 1);
     };
+
+   
 
     const handleSubmit = async (data: any) => {
         console.log("idhar aagaye")
@@ -525,34 +528,54 @@ function EducationForm({ data, onSubmit, onPrevious }: any) {
 }
 
 function SupportForm({ data, onSubmit, onPrevious }: any) {
-    const [form, setForm] = useState(data);
-    const handleChange = (e: any) => {
-        const { name, value } = e.target;
-        setForm((prev: any) => ({ ...prev, [name]: value }));
-    };
+    const [form, setForm] = useState(data)
+
+    const handleCheck = (e: boolean, mode: string) => {
+        if (e === true) {
+            form.supportType.push(mode); 
+        } else {
+            let arr = [...form.supportType]
+            const index = arr.findIndex((item) => {console.log(item); return item === mode})
+            if (index !== -1) {
+                console.log(index)
+                arr.splice(index, 1)
+                console.log(arr)
+                setForm({supportType: arr})
+            }
+        }
+        console.log(form)
+    }
+
+    
     return (
         <form className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         
+            <div className="flex">
+                <div className="flex items-center mr-2">
+                    <Checkbox onCheckedChange={(e: boolean) => {handleCheck(e, "EDUCATION")}} id="support" className="mr-2"/>
+                    <label htmlFor="support" className="block text-md font-medium text-gray-700">
+                        Education
+                    </label>
+                    
+                </div>
 
-            <div>
-                <label className="block text-sm font-medium text-gray-700">
-                    Support Type
-                </label>
-                <select
-                    name="supportType"
-                    value={form.supportType}
-                    onChange={handleChange}
-                    className="w-full p-3 border rounded-md bg-gray-100"
-                    required
-                >
-                    <option value="">Select</option>
-                    <option value="EDUCATION">EDUCATION</option>
-                    <option value="PLACEMENT">PLACEMENT</option>
-                    <option value="TRAINING">TRAINING</option>
-                </select>
+                
+                <div className="flex items-center mr-2">
+                    <Checkbox  onCheckedChange={(e: boolean) => {handleCheck(e, "TRAINING")}} id="support" className="mr-2"/>
+                    <label htmlFor="support" className="block text-md font-medium text-gray-700">
+                        Training
+                    </label>
+                    
+                </div>
+
+                <div className="flex items-center">
+                    <Checkbox onCheckedChange={(e: boolean) => {handleCheck(e, "PLACEMENT")}} name="placement" id="support" className="mr-2"/>
+                    <label htmlFor="support" className="block text-md font-medium text-gray-700">
+                        Placement
+                    </label>
+                    
+                </div>
             </div>
-
-            
 
             <div className="sm:col-span-2 flex justify-between">
                 {onPrevious && (

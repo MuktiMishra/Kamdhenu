@@ -13,3 +13,9 @@
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
   }
+
+@layer base {
+  :root {
+        --radius: 0.5rem;
+    }
+}

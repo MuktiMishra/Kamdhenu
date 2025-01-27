@@ -22,7 +22,7 @@ const signUpController = asyncHandler(async (req: Request, res: Response) => {
             !personalInfo.aadharNumber ||
             !personalInfo.mobileNumber ||
             !personalInfo.termsAccepted ||
-            !supportInfo.supportType
+            supportInfo.supportType.length === 0
         ) {
             return res.status(400).json(new ApiError(400, "Bad request, missing required fields"));
         }
@@ -76,7 +76,7 @@ const signUpController = asyncHandler(async (req: Request, res: Response) => {
         let aadharNumber = personalInfo.aadharNumber
         const authToken = jwt.sign({ aadharNumber }, process.env.AUTH_TOKEN_PASS!);
 
-        return res.status(201).json(new ApiResponse(201, { message: "hi" }, "Student registered successfully"));
+        return res.status(201).json(new ApiResponse(201, { authToken }, "Student registered successfully"));
 
     } catch (err) {
         console.error(err);

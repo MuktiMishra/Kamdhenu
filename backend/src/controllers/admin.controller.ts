@@ -212,6 +212,10 @@ const deleteAdmin = asyncHandler(async (req: RequestWithAdmin, res: Response) =>
 
 const educationSupportAdmin = asyncHandler(async (req: RequestWithAdmin, res:Response) => {
     const admin = req.admin; 
+
+    if (!admin) {
+        return res.status(400).json(new ApiError(400, "No admin found"))
+    }
     
     const {aadhar, furtherQualification} = req.body; 
 
@@ -224,7 +228,9 @@ const educationSupportAdmin = asyncHandler(async (req: RequestWithAdmin, res:Res
         }
 
         if (paid === "paid") {paid = true}
-        else {paid = false; fees = 0}
+        else {paid = false; fees = '0'}
+
+        console.log(admin)
 
         const createSupportEducation = await prisma.educationStudentSupport.create({
             data: {
@@ -257,7 +263,7 @@ const trainingSupportAdmin = asyncHandler(async (req: RequestWithAdmin, res: Res
         }
 
         if (paid === "paid") paid = true
-        else {paid = false; fees = 0}
+        else {paid = false; fees = '0'}
 
         const createSupportTraining = await prisma.trainingStudentSupport.create({
             data: {
@@ -289,7 +295,7 @@ const placementSupportAdmin = asyncHandler(async (req: RequestWithAdmin, res: Re
         }
 
         if (paid === "paid") paid = true
-        else { paid = false; fees = 0 }
+        else { paid = false; fees = '0' }
 
         const createPlacementSupport = await prisma.placementStudentSupport.create({
             data: {

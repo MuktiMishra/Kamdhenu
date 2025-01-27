@@ -10,9 +10,7 @@ interface Candidate {
   aadharNumber: string;
   candidateName: string;
   phoneNo: string;
-  support: {
-    supportType: string
-  }
+  supportType: string[]; 
   regTime: string;
   trainingSupport? : any; 
   placementSupport?: any; 
@@ -90,6 +88,9 @@ const DataTable: React.FC<{tabContext: string}> = ({ tabContext }) => {
               Registration Time
             </th>
             <th style={{ border: "1px solid #ddd", padding: "8px" }}>
+              Support Type
+            </th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>
               Support Data
             </th>
             <th style={{ border: "1px solid #ddd", padding: "8px" }}>Actions</th>
@@ -109,6 +110,11 @@ const DataTable: React.FC<{tabContext: string}> = ({ tabContext }) => {
               </td>
               <td style={{ border: "1px solid #ddd", padding: "8px", textAlign: "center" }}>
                 {candidate.regTime.slice(0, 10)}
+              </td>
+              <td style={{ border: "1px solid #ddd", padding: "8px", textAlign: "center" }}>
+                {candidate.supportType.map((item) => {
+                  return <p>{item} </p>
+                })}
               </td>
               <td style={{ border: "1px solid #ddd", padding: "8px" }}>
                 <button onClick={() => {setSelectedCandidate(candidate); setMode("specificView")}}>View</button>

@@ -57,7 +57,7 @@ const Login : React.FC<SignupProps>= () => {
                     Login
                 </div>
                 
-                <input type="number" className="w-72 lg:w-80 h-7 p-4 rounded-md bg-slate-200" name='aadharNumber' placeholder="Aadhar Number" onChange={handleChange} />
+                <input type="number" className="w-72 lg:w-80 h-7 p-4 rounded-md bg-slate-200" name='aadharNumber' placeholder="registration number" onChange={handleChange} />
                 <input type="password" className="w-72 lg:w-80 h-7 p-4 rounded-md bg-slate-200" name='password' placeholder="Password" onChange={handleChange} />
                
 
