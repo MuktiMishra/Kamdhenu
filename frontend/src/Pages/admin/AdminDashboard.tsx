@@ -3,6 +3,7 @@ import Sidebar from "../../Components/admin/Sidebar";
 import DataTable from "../../Components/admin/DataTable";
 import AddNewStaff from "../../Components/admin/AddNewStaff";
 import StaffList from "../../Components/admin/StaffList";
+import { AdminGallery } from "@/Components/admin/AdminGallery";
 
 const AdminDashboard: React.FC = () => {
   
@@ -18,6 +19,8 @@ const AdminDashboard: React.FC = () => {
         return <StaffList />; // placement
       case 2: 
         return <AddNewStaff />
+      case 4: 
+      return <AdminGallery />
       default:
         return <DataTable tabContext="default" />;
     }

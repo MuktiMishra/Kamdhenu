@@ -56,7 +56,13 @@ const Sidebar: React.FC<SidebarProps> = ({ onItemClick }) => {
           onClick={() => {onItemClick(3); setIsOpen(false)}}>
             <FaBriefcase size={20} />
             <span>See Admin List</span>
-          </li></>}
+          </li>
+          <li className="flex items-center gap-3 hover:bg-blue-700 rounded-md p-2 cursor-pointer"
+          onClick={() => {onItemClick(4); setIsOpen(false)}}>
+            <FaBriefcase size={20} />
+            <span>Add Gallery Image</span>
+          </li>
+          </>}
           <li className="flex items-center gap-3 hover:bg-blue-700 rounded-md p-2 cursor-pointer"
           onClick={handleLogout}>
             <FaAnglesLeft size={20}/>

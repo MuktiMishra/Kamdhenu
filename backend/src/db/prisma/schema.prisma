@@ -96,6 +96,11 @@ model EducationStudentSupport {
   paid                 Boolean @default(false)
   furtherQualification String
   fees                 String  @default("")
-  FilledBy             String  @unique  
+  FilledBy             String  @unique
   Admin                Admin   @relation(fields: [FilledBy], references: [username])
+}
+
+model GalleryImage {
+  id   String @id @default(cuid())
+  link String
 }

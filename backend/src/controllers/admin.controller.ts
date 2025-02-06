@@ -5,6 +5,24 @@ import {ApiResponse} from "../util/ApiResponse.js";
 import prisma from "../util/prismaClient.js";
 import jwt from 'jsonwebtoken'
 import { RequestWithAdmin } from "../util/RequestWithAdmin.js";
+import {v2 as cloudinary} from 'cloudinary'; 
+import dotenv from 'dotenv'
+import { fileURLToPath } from 'url'; 
+import path from 'path'; 
+import fs from 'fs'
+dotenv.config(); 
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_API_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY, 
+    api_secret: process.env.CLOUDINARY_API_SECRET
+})
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+
 
 // tested
 const signInAdmin = asyncHandler(async (req: Request, res: Response) => {
@@ -315,4 +333,67 @@ const placementSupportAdmin = asyncHandler(async (req: RequestWithAdmin, res: Re
     }
 })
 
-export {signInAdmin, verifyUser, placementForm, trainingForm, addStaff, getStaffList, deleteAdmin, educationSupportAdmin, trainingSupportAdmin, placementSupportAdmin}
+const uploadGalleryImage = asyncHandler(async (req: Request, res: Response) => {
+    const file = req.file; 
+
+    if (!file) {
+        return res.status(400).json(new ApiError(400, "No file found")); 
+    }
+
+    const imagePath = path.join(__dirname, '../../uploads', file.filename);
+
+    if (!fs.existsSync(imagePath)) {
+        console.error("File not found at path:", imagePath);
+        return res.status(400).json(new ApiError(400, "Image file not found"));
+    }
+
+    try {
+
+        console.log("Uploading image to Cloudinary...");
+        const result = await cloudinary.uploader.upload(imagePath, {
+          folder: "campaign_images",
+        });
+
+        console.log("Image uploaded to Cloudinary:", result.secure_url);
+        const imageUrl = result.secure_url;
+
+        const createGalleryImage = await prisma.galleryImage.create({
+            data: {
+                link: imageUrl 
+            }
+        })
+
+        if (!createGalleryImage) {
+            return res.status(403).json(new ApiError(403, "Failed to create image")); 
+        }
+
+        return res.status(200).json(new ApiResponse(200, createGalleryImage, "Gallery created"))
+
+    } catch (err: any) {
+        return res.status(500).json(new ApiError(500, "Internal Server Error")); 
+    }
+})  
+
+const getGalleryImages = asyncHandler(async (req: RequestWithAdmin, res:Response) => {
+    const images = await prisma.galleryImage.findMany({}); 
+
+    if (!images || images.length === 0) {
+        return res.status(201).json(new ApiResponse(201, [], "No images found")); 
+    }
+
+    return res.status(200).json(new ApiResponse(200, images, "Images found successfully")); 
+})
+
+const deleteImage = asyncHandler(async (req: Request, res: Response) => {
+    const { id } = req.body; 
+
+    const deleteImage = await prisma.galleryImage.delete({
+        where: {
+            id
+        }
+    })
+
+    return res.status(200).json(new ApiResponse(200, deleteImage, "Deleted Successfully")); 
+})
+
+export {deleteImage, getGalleryImages, uploadGalleryImage, signInAdmin, verifyUser, placementForm, trainingForm, addStaff, getStaffList, deleteAdmin, educationSupportAdmin, trainingSupportAdmin, placementSupportAdmin}
